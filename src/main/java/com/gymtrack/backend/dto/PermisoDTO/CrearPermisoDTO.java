@@ -1,16 +1,16 @@
-package com.gymtrack.backend.dto;
+package com.gymtrack.backend.dto.PermisoDTO;
+
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor @AllArgsConstructor
 @Getter @Setter
 @Builder
-public class CambiarEmailDTO {
+public class CrearPermisoDTO {
 
     @NotBlank
-    @Size(max = 50)
+    @Size(max = 30)
     private String nombre;
 }

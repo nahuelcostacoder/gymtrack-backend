@@ -1,4 +1,4 @@
-package com.gymtrack.backend.dto;
+package com.gymtrack.backend.dto.PermisoDTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -8,9 +8,9 @@ import lombok.*;
 @AllArgsConstructor
 @Getter @Setter
 @Builder
-public class CambiarPasswordDTO {
+public class PermisoDTO {
 
-    @NotBlank
-    @Size(min = 8, max = 100)
-    private String password;
+    private Long id;
+
+    private String nombre;
 }

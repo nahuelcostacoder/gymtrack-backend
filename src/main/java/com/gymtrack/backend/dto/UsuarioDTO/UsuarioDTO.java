@@ -1,4 +1,4 @@
-package com.gymtrack.backend.dto;
+package com.gymtrack.backend.dto.UsuarioDTO;
 
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -10,30 +10,35 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter @Setter
 @Builder
-public class CrearUsuarioDTO {
+public class UsuarioDTO {
 
-    @NotBlank(message = "El nombre de usuario es obligatorio") //tampoco permite espacios
+    private Long id;
+
+    @NotBlank //tampoco permite espacios
     @Size(min = 3, max = 30)
     private String username;
 
-    @NotBlank(message = "El mail es obligatorio")
+    @NotBlank
     @Email
     @Size(max = 100)
     private String email;
 
     @NotBlank
-    @Size(min = 8, max = 100)
-    private String password;
-
-    @NotBlank(message = "El nombre es obligatorio")
     @Size(max = 50)
     private String nombre;
-
-    @NotBlank(message = "El apellido es obligatorio")
+    @NotBlank
     @Size(max = 50)
     private String apellido;
+
+    @Size(max = 500)
+    private String fotoPerfilUrl;
 
     @Past
     @NotNull
     private LocalDate fechaNacimiento;
+
+    private boolean habilitado;
+
+    private Set<String> roles;
+
 }

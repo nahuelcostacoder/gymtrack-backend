@@ -1,4 +1,4 @@
-package com.gymtrack.backend.dto;
+package com.gymtrack.backend.dto.UsuarioDTO;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
