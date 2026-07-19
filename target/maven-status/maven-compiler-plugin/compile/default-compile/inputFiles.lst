@@ -37,6 +37,7 @@
 /home/nahuel/proyecto-gymTrack/gymtrack-backend/src/main/java/com/gymtrack/backend/dto/UsuarioDTO/CrearUsuarioDTO.java
 /home/nahuel/proyecto-gymTrack/gymtrack-backend/src/main/java/com/gymtrack/backend/dto/UsuarioDTO/UsuarioDTO.java
 /home/nahuel/proyecto-gymTrack/gymtrack-backend/src/main/java/com/gymtrack/backend/dto/UsuarioDTO/UsuarioResumenDTO.java
+/home/nahuel/proyecto-gymTrack/gymtrack-backend/src/main/java/com/gymtrack/backend/mapper/UsuarioMapper.java
 /home/nahuel/proyecto-gymTrack/gymtrack-backend/src/main/java/com/gymtrack/backend/model/Amistad.java
 /home/nahuel/proyecto-gymTrack/gymtrack-backend/src/main/java/com/gymtrack/backend/model/Comentario.java
 /home/nahuel/proyecto-gymTrack/gymtrack-backend/src/main/java/com/gymtrack/backend/model/Ejercicio.java
@@ -57,3 +58,6 @@
 /home/nahuel/proyecto-gymTrack/gymtrack-backend/src/main/java/com/gymtrack/backend/model/RutinaEjercicio.java
 /home/nahuel/proyecto-gymTrack/gymtrack-backend/src/main/java/com/gymtrack/backend/model/Suscripcion.java
 /home/nahuel/proyecto-gymTrack/gymtrack-backend/src/main/java/com/gymtrack/backend/model/Usuario.java
+/home/nahuel/proyecto-gymTrack/gymtrack-backend/src/main/java/com/gymtrack/backend/repository/UsuarioRepository.java
+/home/nahuel/proyecto-gymTrack/gymtrack-backend/src/main/java/com/gymtrack/backend/service/UsuarioService.java
+/home/nahuel/proyecto-gymTrack/gymtrack-backend/src/main/java/com/gymtrack/backend/service/UsuarioServiceImp.java
