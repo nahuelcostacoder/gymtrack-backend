@@ -28,7 +28,7 @@ public class ActualizarRutinaEjercicioDTO {
 
     @NotNull
     @PositiveOrZero
-    private BigDecimal pesoOjetivo;
+    private BigDecimal pesoObjetivo;
 
     @NotNull
     @PositiveOrZero
@@ -38,5 +38,5 @@ public class ActualizarRutinaEjercicioDTO {
     private String observaciones;
 
     @NotNull
-    private Long ejercicio_id;
+    private Long ejercicioId;
 }

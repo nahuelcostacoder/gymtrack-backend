@@ -1,5 +1,6 @@
 package com.gymtrack.backend.dto.RutinaEjercicioDTO;
 
+import com.gymtrack.backend.dto.EjercicioDTO.EjercicioDTO;
 import lombok.*;
 
 import java.math.BigDecimal;

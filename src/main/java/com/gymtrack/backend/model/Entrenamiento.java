@@ -40,9 +40,16 @@ public class Entrenamiento extends EntidadAuditable{
     @Transient
     public Long getDuracionMinutos(){
 
-        if (fechaInicio == null && fechaFin == null){
+        if (fechaInicio == null || fechaFin == null){
             return null;
         }
+
+        if (fechaFin.isBefore(fechaInicio)) {
+            throw new IllegalStateException(
+                    "La fecha de finalización no puede ser anterior a la fecha de inicio"
+            );
+        }
+
         return Duration.between(fechaInicio, fechaFin).toMinutes();
     }
 }

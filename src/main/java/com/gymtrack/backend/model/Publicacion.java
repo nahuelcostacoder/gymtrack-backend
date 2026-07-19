@@ -18,7 +18,7 @@ public class Publicacion extends EntidadAuditable{
     private String contenido;
 
     @Column(length = 500)
-    private String fotoUrl;
+    private String imagenUrl;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "entrenamiento_id", nullable = false, unique = true)

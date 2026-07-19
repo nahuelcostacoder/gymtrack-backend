@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter @Setter
 @Builder
 @Entity
-@Table(name = "rutinas")
+@Table(name = "rutina")
 public class Rutina extends EntidadAuditable{
 
     @Id
@@ -34,9 +34,9 @@ public class Rutina extends EntidadAuditable{
     private Usuario usuario;
 
     @OneToMany(mappedBy = "rutina", cascade = CascadeType.ALL, orphanRemoval = true)
-    @OrderBy("order ASC")
+    @OrderBy("orden ASC")
     @Builder.Default
-    private Set<RutinaEjercicio> ejercicios = new HashSet<>();
+    private List<RutinaEjercicio> ejercicios = new ArrayList<>();
 
     //mappedBy rutina lo que hace es en vez de usar un joincolumn y poner el atributo, le decimos que usamos el
     //rutina que esta dentro de RutinaEjercicio. Por eso no se crea otra FK.

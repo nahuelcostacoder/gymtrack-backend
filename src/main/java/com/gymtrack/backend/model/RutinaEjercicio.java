@@ -9,7 +9,15 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Getter @Setter
 @Builder
-@Table(name = "rutina_ejercicio")
+@Table(
+        name = "rutina_ejercicio",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "uk_rutina_orden",
+                        columnNames = {"rutina_id", "orden"}
+                )
+        }
+)
 @Entity
 public class RutinaEjercicio extends EntidadAuditable{
 

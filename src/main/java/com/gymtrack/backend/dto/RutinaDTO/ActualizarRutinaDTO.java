@@ -1,5 +1,6 @@
 package com.gymtrack.backend.dto.RutinaDTO;
 
+import com.gymtrack.backend.dto.RutinaEjercicioDTO.CrearRutinaEjercicioDTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

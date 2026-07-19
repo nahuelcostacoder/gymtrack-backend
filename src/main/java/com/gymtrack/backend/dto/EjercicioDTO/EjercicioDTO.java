@@ -1,5 +1,6 @@
 package com.gymtrack.backend.dto.EjercicioDTO;
 
+import com.gymtrack.backend.dto.GrupoMuscularDTO.GrupoMuscularDTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

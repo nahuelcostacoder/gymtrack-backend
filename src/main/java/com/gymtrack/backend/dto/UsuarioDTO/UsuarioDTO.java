@@ -4,6 +4,7 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -39,6 +40,7 @@ public class UsuarioDTO {
 
     private boolean habilitado;
 
-    private Set<String> roles;
+    @Builder.Default
+    private Set<String> roles = new HashSet<>();
 
 }

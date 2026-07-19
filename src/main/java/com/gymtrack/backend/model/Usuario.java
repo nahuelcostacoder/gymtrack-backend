@@ -52,8 +52,9 @@ public class Usuario extends EntidadAuditable{
     @JoinTable(
 
             name = "usuario_roles",
-            joinColumns =  @JoinColumn(name = "id_usuario"),
-            inverseJoinColumns = @JoinColumn(name = "id_role")
+            joinColumns =  @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id")
     )
+    @Builder.Default
     private Set<Rol> roles = new HashSet<>();
 }

@@ -1,13 +1,15 @@
 package com.gymtrack.backend.dto.UsuarioDTO;
 
+import jakarta.persistence.Entity;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter @Setter
+@Builder
 public class ActualizarUsuarioDTO {
 
     @NotBlank //tampoco permite espacios
