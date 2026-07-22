@@ -23,6 +23,8 @@ public interface UsuarioMapper {
             @MappingTarget Usuario usuario //mapping target es para decirle a mapStruct que modifique el ya exitente (el que le pasamos por parametro)
     );
 
+
+
     default String mapRolToString(Rol rol){
 
         return rol != null ? rol.getNombre(): null;

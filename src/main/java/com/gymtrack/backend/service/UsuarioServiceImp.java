@@ -1,11 +1,17 @@
 package com.gymtrack.backend.service;
 
 import com.gymtrack.backend.dto.UsuarioDTO.*;
+import com.gymtrack.backend.exception.AlreadyExistsException;
+import com.gymtrack.backend.exception.NotFoundException;
 import com.gymtrack.backend.mapper.UsuarioMapper;
+import com.gymtrack.backend.model.Usuario;
 import com.gymtrack.backend.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.mapping.Map;
 import org.springframework.stereotype.Service;
 
+import java.rmi.AlreadyBoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -18,36 +24,86 @@ public class UsuarioServiceImp implements UsuarioService{
 
     @Override
     public List<UsuarioDTO> listar() {
-        return List.of();
+
+        return usuarioRepository.findAll()
+                .stream().map(usuarioMapper::toDto).toList();
     }
 
     @Override
     public UsuarioDTO buscarPorId(Long id) {
-        return null;
+
+        Usuario usuario = buscarEntidadPorId(id);
+
+        return usuarioMapper.toDto(usuario);
     }
 
     @Override
     public UsuarioDTO crear(CrearUsuarioDTO dto) {
-        return null;
+
+
+        Usuario usuario = usuarioMapper.toEntity(dto);
+
+        Usuario usuarioGuardado = usuarioRepository.save(usuario);
+
+        return usuarioMapper.toDto(usuarioGuardado);
+
     }
 
     @Override
     public UsuarioDTO actualizar(Long id, ActualizarUsuarioDTO dto) {
-        return null;
+
+        Usuario usuario = buscarEntidadPorId(id);
+
+        usuarioMapper.updateEntity(dto, usuario);
+
+        Usuario usuarioActualizado = usuarioRepository.save(usuario);
+
+        return usuarioMapper.toDto(usuarioActualizado);
     }
 
     @Override
-    public void cambiarEmail(Long id, CambiarEmailDTO dto) {
+    public void cambiarEmail(Long id, CambiarEmailDTO dto)  {
 
+
+        Usuario usuario = buscarEntidadPorId(id);
+
+        if (!usuario.getEmail().equals(dto.getEmail())
+                && usuarioRepository.existsByEmail(dto.getEmail())) {
+
+            throw new AlreadyExistsException("Ya existe un usuario con ese email");
+        }
+
+        usuario.setEmail(dto.getEmail());
+
+        usuarioRepository.save(usuario);
     }
 
     @Override
     public void cambiarPassword(Long id, CambiarPasswordDTO dto) {
+
+        Usuario usuario = buscarEntidadPorId(id);
+
+        if (usuario.getPassword().equals(dto.getPassword())){
+
+            throw new AlreadyExistsException("La contraseña es la misma que la que ya tiene");
+        }
+
+        usuario.setPassword(dto.getPassword());
+
+        usuarioRepository.save(usuario);
 
     }
 
     @Override
     public void eliminar(Long id) {
 
+        usuarioRepository.delete(buscarEntidadPorId(id));
+
+    }
+
+    private Usuario buscarEntidadPorId(Long id){
+
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("No se encontro con usuario con ID " + id));
     }
 }
