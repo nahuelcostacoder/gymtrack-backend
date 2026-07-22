@@ -12,7 +12,7 @@ public interface UsuarioService {
     UsuarioDTO buscarPorId(Long id);
     UsuarioDTO crear(CrearUsuarioDTO dto);
     UsuarioDTO actualizar(Long id, ActualizarUsuarioDTO dto);
-    void cambiarEmail(Long id, CambiarEmailDTO dto) throws AlreadyBoundException;
+    void cambiarEmail(Long id, CambiarEmailDTO dto);
     void cambiarPassword(Long id, CambiarPasswordDTO dto);
     void eliminar(Long id);
 }
