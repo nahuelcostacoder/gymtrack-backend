@@ -22,4 +22,7 @@ public class PerfilDTO {
     private Objetivo objetivo;
 
     private NivelEntrenamiento nivelEntrenamiento;
+
+    private Long usuarioId;
+
 }

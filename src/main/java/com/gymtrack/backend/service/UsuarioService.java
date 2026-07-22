@@ -15,4 +15,5 @@ public interface UsuarioService {
     void cambiarEmail(Long id, CambiarEmailDTO dto);
     void cambiarPassword(Long id, CambiarPasswordDTO dto);
     void eliminar(Long id);
+
 }

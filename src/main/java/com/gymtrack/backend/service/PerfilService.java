@@ -14,4 +14,5 @@ public interface PerfilService {
     PerfilDTO crear(CrearPerfilDTO dto);
     PerfilDTO actualizar(Long id, ActualizarPerfilDTO dto);
     void eliminar(Long id);
+    PerfilDTO buscarPorIdUsuario(Long id);
 }

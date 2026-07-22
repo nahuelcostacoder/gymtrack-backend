@@ -1,14 +1,16 @@
 package com.gymtrack.backend.mapper;
 
 import com.gymtrack.backend.dto.PerfilDTO.ActualizarPerfilDTO;
+import com.gymtrack.backend.dto.PerfilDTO.CrearPerfilDTO;
 import com.gymtrack.backend.dto.PerfilDTO.PerfilDTO;
 import com.gymtrack.backend.model.Perfil;
+import com.gymtrack.backend.model.Usuario;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-22T13:15:12-0300",
+    date = "2026-07-22T19:43:41-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.11 (Microsoft)"
 )
 @Component
@@ -22,6 +24,7 @@ public class PerfilMapperImpl implements PerfilMapper {
 
         PerfilDTO.PerfilDTOBuilder perfilDTO = PerfilDTO.builder();
 
+        perfilDTO.usuarioId( perfilUsuarioId( perfil ) );
         perfilDTO.id( perfil.getId() );
         perfilDTO.biografia( perfil.getBiografia() );
         perfilDTO.peso( perfil.getPeso() );
@@ -33,14 +36,13 @@ public class PerfilMapperImpl implements PerfilMapper {
     }
 
     @Override
-    public Perfil toEntity(PerfilDTO dto) {
+    public Perfil toEntity(CrearPerfilDTO dto) {
         if ( dto == null ) {
             return null;
         }
 
         Perfil.PerfilBuilder perfil = Perfil.builder();
 
-        perfil.id( dto.getId() );
         perfil.biografia( dto.getBiografia() );
         perfil.peso( dto.getPeso() );
         perfil.altura( dto.getAltura() );
@@ -61,5 +63,13 @@ public class PerfilMapperImpl implements PerfilMapper {
         perfil.setAltura( dto.getAltura() );
         perfil.setObjetivo( dto.getObjetivo() );
         perfil.setNivelEntrenamiento( dto.getNivelEntrenamiento() );
+    }
+
+    private Long perfilUsuarioId(Perfil perfil) {
+        Usuario usuario = perfil.getUsuario();
+        if ( usuario == null ) {
+            return null;
+        }
+        return usuario.getId();
     }
 }
