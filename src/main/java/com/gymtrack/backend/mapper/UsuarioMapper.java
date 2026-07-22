@@ -24,7 +24,6 @@ public interface UsuarioMapper {
     );
 
 
-
     default String mapRolToString(Rol rol){
 
         return rol != null ? rol.getNombre(): null;
