@@ -21,6 +21,11 @@ public class ActualizarUsuarioDTO {
     private String nombre;
 
     @NotBlank
+    @Email
+    @Size(max = 100)
+    private String email;
+
+    @NotBlank
     @Size(max = 50)
     private String apellido;
 

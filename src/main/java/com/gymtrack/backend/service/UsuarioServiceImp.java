@@ -40,6 +40,8 @@ public class UsuarioServiceImp implements UsuarioService{
     @Override
     public UsuarioDTO crear(CrearUsuarioDTO dto) {
 
+        validarNombreUsuarioDisponible(dto.getUsername());
+        validarNombreUsuarioDisponible(dto.getEmail());
 
         Usuario usuario = usuarioMapper.toEntity(dto);
 
@@ -51,6 +53,9 @@ public class UsuarioServiceImp implements UsuarioService{
 
     @Override
     public UsuarioDTO actualizar(Long id, ActualizarUsuarioDTO dto) {
+
+        validarNombreUsuarioDisponible(dto.getNombre());
+        validarEmailDisponible(dto.getEmail());
 
         Usuario usuario = buscarEntidadPorId(id);
 
@@ -70,7 +75,7 @@ public class UsuarioServiceImp implements UsuarioService{
         if (!usuario.getEmail().equals(dto.getEmail())
                 && usuarioRepository.existsByEmail(dto.getEmail())) {
 
-            throw new AlreadyExistsException("Ya existe un usuario con ese email");
+            throw new AlreadyExistsException("Ya existe un usuario con email " + dto.getEmail());
         }
 
         usuario.setEmail(dto.getEmail());
@@ -106,4 +111,20 @@ public class UsuarioServiceImp implements UsuarioService{
         return usuarioRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("No se encontro con usuario con ID " + id));
     }
+
+
+    private void validarNombreUsuarioDisponible(String nombreUsuario){
+
+        if (usuarioRepository.existsByUsername(nombreUsuario))
+            throw new AlreadyExistsException("Ya existe un usuario con nombre " + nombreUsuario);
+    }
+
+    private void validarEmailDisponible(String email){
+
+        if (usuarioRepository.existsByEmail(email)) {
+
+            throw new AlreadyExistsException("Ya existe un usuario con email " + email);
+        }
+    }
 }
+
