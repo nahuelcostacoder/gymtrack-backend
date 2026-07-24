@@ -7,7 +7,9 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,5 +25,5 @@ public class EjercicioDTO {
     private String videoUrl;
 
     @Builder.Default
-    List<GrupoMuscularDTO> gruposMusculares = new ArrayList<>();
+    Set<String> gruposMusculares = new HashSet<>();
 }

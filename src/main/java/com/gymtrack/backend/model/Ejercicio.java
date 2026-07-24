@@ -31,7 +31,7 @@ public class Ejercicio extends EntidadAuditable {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "ejercicios_grupos_musculares",
             joinColumns = @JoinColumn(name = "ejercicio_id"),
-            inverseJoinColumns = @JoinColumn(name = "grupos_musculares_id")
+            inverseJoinColumns = @JoinColumn(name = "grupo_muscular_id")
     )
     @Builder.Default
     private Set<GrupoMuscular> gruposMusculares = new HashSet<>();

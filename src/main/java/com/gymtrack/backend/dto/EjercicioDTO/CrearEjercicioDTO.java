@@ -7,6 +7,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.URL;
 
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,5 +29,5 @@ public class CrearEjercicioDTO {
     private String videoUrl;
 
     @NotEmpty
-    private List<Long> gruposMuscularesIds;
+    private Set<Long> gruposMuscularesIds;
 }
