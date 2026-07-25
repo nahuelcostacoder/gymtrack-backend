@@ -24,6 +24,9 @@ public class CrearRutinaDTO {
 
     private boolean publica;
 
+    //esto es temporal hasta implementar JWT
+    private Long usuarioId;
+
     @Valid
     @Builder.Default
     private List<CrearRutinaEjercicioDTO> ejercicios = new ArrayList<>();
