@@ -44,9 +44,7 @@ public class EjercicioServiceImp implements EjercicioService{
     @Override
     public EjercicioDTO crear(CrearEjercicioDTO dto) {
 
-        if (ejercicioRepository.existsByNombre(dto.getNombre()))
-
-            throw new AlreadyExistsException("Ya existe un ejercicio con nombre " + dto.getNombre());
+        validarNombreEjercicio(dto.getNombre());
 
         //paso a entidad
 
@@ -75,6 +73,8 @@ public class EjercicioServiceImp implements EjercicioService{
 
     @Override
     public EjercicioDTO actualizar(Long id, ActualizarEjercicioDTO dto) {
+
+        validarNombreEjercicio(dto.getNombre());
 
         Ejercicio ejercicio = buscarEntidadPorId(id);
 
@@ -110,4 +110,13 @@ public class EjercicioServiceImp implements EjercicioService{
         return ejercicioRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("No se ha encontrado un ejercicio con ID " + id));
     }
+
+    private void validarNombreEjercicio(String nombre){
+
+        if (ejercicioRepository.existsByNombre(nombre))
+
+            throw new AlreadyExistsException("Ya existe un ejercicio con nombre " + nombre);
+    }
+
+     
 }
