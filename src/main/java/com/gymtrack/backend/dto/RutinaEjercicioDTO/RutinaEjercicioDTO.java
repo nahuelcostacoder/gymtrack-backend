@@ -17,6 +17,8 @@ public class RutinaEjercicioDTO {
 
     private Integer seriesObjetivo;
 
+    private Integer repeticionesObjetivo;
+
     private BigDecimal pesoObjetivo;
 
     private Integer descansoSegundos;
@@ -24,4 +26,7 @@ public class RutinaEjercicioDTO {
     private String observaciones;
 
     private EjercicioDTO ejercicio;
+
+    //no pongo rutina porque la idea es que desde rutina se llama a los
+    // rutinaejercicio dto que es el set de ejercicios que tiene rutina
 }

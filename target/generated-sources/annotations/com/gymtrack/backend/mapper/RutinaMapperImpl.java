@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-24T22:47:59-0300",
+    date = "2026-07-27T09:36:07-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.11 (Microsoft)"
 )
 @Component
@@ -86,6 +86,7 @@ public class RutinaMapperImpl implements RutinaMapper {
         rutinaEjercicioDTO.id( rutinaEjercicio.getId() );
         rutinaEjercicioDTO.orden( rutinaEjercicio.getOrden() );
         rutinaEjercicioDTO.seriesObjetivo( rutinaEjercicio.getSeriesObjetivo() );
+        rutinaEjercicioDTO.repeticionesObjetivo( rutinaEjercicio.getRepeticionesObjetivo() );
         rutinaEjercicioDTO.pesoObjetivo( rutinaEjercicio.getPesoObjetivo() );
         rutinaEjercicioDTO.descansoSegundos( rutinaEjercicio.getDescansoSegundos() );
         rutinaEjercicioDTO.observaciones( rutinaEjercicio.getObservaciones() );

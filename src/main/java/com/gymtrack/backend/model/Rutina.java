@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter @Setter
 @Builder
 @Entity
-@Table(name = "rutina")
+@Table(name = "rutinas")
 public class Rutina extends EntidadAuditable{
 
     @Id

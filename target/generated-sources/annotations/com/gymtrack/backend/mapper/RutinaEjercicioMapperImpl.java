@@ -1,5 +1,6 @@
 package com.gymtrack.backend.mapper;
 
+import com.gymtrack.backend.dto.RutinaEjercicioDTO.ActualizarRutinaEjercicioDTO;
 import com.gymtrack.backend.dto.RutinaEjercicioDTO.CrearRutinaEjercicioDTO;
 import com.gymtrack.backend.dto.RutinaEjercicioDTO.RutinaEjercicioDTO;
 import com.gymtrack.backend.model.RutinaEjercicio;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-24T22:32:18-0300",
+    date = "2026-07-27T09:36:07-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.11 (Microsoft)"
 )
 @Component
@@ -29,6 +30,7 @@ public class RutinaEjercicioMapperImpl implements RutinaEjercicioMapper {
         rutinaEjercicioDTO.id( rutinaEjercicio.getId() );
         rutinaEjercicioDTO.orden( rutinaEjercicio.getOrden() );
         rutinaEjercicioDTO.seriesObjetivo( rutinaEjercicio.getSeriesObjetivo() );
+        rutinaEjercicioDTO.repeticionesObjetivo( rutinaEjercicio.getRepeticionesObjetivo() );
         rutinaEjercicioDTO.pesoObjetivo( rutinaEjercicio.getPesoObjetivo() );
         rutinaEjercicioDTO.descansoSegundos( rutinaEjercicio.getDescansoSegundos() );
         rutinaEjercicioDTO.observaciones( rutinaEjercicio.getObservaciones() );
@@ -53,5 +55,19 @@ public class RutinaEjercicioMapperImpl implements RutinaEjercicioMapper {
         rutinaEjercicio.observaciones( dto.getObservaciones() );
 
         return rutinaEjercicio.build();
+    }
+
+    @Override
+    public void updateEntity(ActualizarRutinaEjercicioDTO dto, RutinaEjercicio rutinaEjercicio) {
+        if ( dto == null ) {
+            return;
+        }
+
+        rutinaEjercicio.setOrden( dto.getOrden() );
+        rutinaEjercicio.setSeriesObjetivo( dto.getSeriesObjetivo() );
+        rutinaEjercicio.setRepeticionesObjetivo( dto.getRepeticionesObjetivo() );
+        rutinaEjercicio.setPesoObjetivo( dto.getPesoObjetivo() );
+        rutinaEjercicio.setDescansoSegundos( dto.getDescansoSegundos() );
+        rutinaEjercicio.setObservaciones( dto.getObservaciones() );
     }
 }
