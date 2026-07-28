@@ -54,10 +54,10 @@ public class UsuarioServiceImp implements UsuarioService{
     @Override
     public UsuarioDTO actualizar(Long id, ActualizarUsuarioDTO dto) {
 
-        validarNombreUsuarioDisponible(dto.getNombre());
-        validarEmailDisponible(dto.getEmail());
-
         Usuario usuario = buscarEntidadPorId(id);
+
+        validarNombreUsuarioDisponibleActualizar(dto.getNombre(), usuario);
+
 
         usuarioMapper.updateEntity(dto, usuario);
 
@@ -115,16 +115,20 @@ public class UsuarioServiceImp implements UsuarioService{
 
     private void validarNombreUsuarioDisponible(String nombreUsuario){
 
-        if (usuarioRepository.existsByUsername(nombreUsuario))
+        if (usuarioRepository.existsByUsername(nombreUsuario)) {
+
             throw new AlreadyExistsException("Ya existe un usuario con nombre " + nombreUsuario);
-    }
-
-    private void validarEmailDisponible(String email){
-
-        if (usuarioRepository.existsByEmail(email)) {
-
-            throw new AlreadyExistsException("Ya existe un usuario con email " + email);
         }
     }
+
+    private void validarNombreUsuarioDisponibleActualizar(String nuevoNombre, Usuario usuario) {
+
+        if (usuario.getNombre().equalsIgnoreCase(nuevoNombre)) {
+            return;
+        }
+
+        if (usuarioRepository.existsByUsername(nuevoNombre));
+    }
+
 }
 

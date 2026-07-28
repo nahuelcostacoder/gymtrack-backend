@@ -5,6 +5,7 @@ import com.gymtrack.backend.dto.RutinaDTO.CrearRutinaDTO;
 import com.gymtrack.backend.dto.RutinaDTO.RutinaDTO;
 import com.gymtrack.backend.model.Rutina;
 import com.gymtrack.backend.service.RutinaService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class RutinaController {
     }
 
     @PostMapping
-    public ResponseEntity<RutinaDTO> crear(@RequestBody CrearRutinaDTO dto){
+    public ResponseEntity<RutinaDTO> crear(@RequestBody @Valid CrearRutinaDTO dto){
 
         RutinaDTO rutina = rutinaService.crear(dto);
 
@@ -41,7 +42,7 @@ public class RutinaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RutinaDTO> actualizar(@PathVariable Long id, @RequestBody ActualizarRutinaDTO dto){
+    public ResponseEntity<RutinaDTO> actualizar(@PathVariable Long id, @RequestBody @Valid ActualizarRutinaDTO dto){
 
         return ResponseEntity.ok(rutinaService.actualizar(id, dto));
     }

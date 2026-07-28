@@ -5,6 +5,7 @@ import com.gymtrack.backend.dto.PerfilDTO.CrearPerfilDTO;
 import com.gymtrack.backend.dto.PerfilDTO.PerfilDTO;
 import com.gymtrack.backend.model.Perfil;
 import com.gymtrack.backend.service.PerfilService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class PerfilController {
     }
 
     @PostMapping
-    public ResponseEntity<PerfilDTO> crear(@RequestBody CrearPerfilDTO dto){
+    public ResponseEntity<PerfilDTO> crear(@RequestBody @Valid CrearPerfilDTO dto){
 
         PerfilDTO perfil = perfilService.crear(dto);
 
@@ -46,7 +47,7 @@ public class PerfilController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PerfilDTO> actualizar(@PathVariable Long id, @RequestBody ActualizarPerfilDTO dto){
+    public ResponseEntity<PerfilDTO> actualizar(@PathVariable Long id, @RequestBody @Valid ActualizarPerfilDTO dto){
 
         return ResponseEntity.ok(perfilService.actualizar(id, dto));
     }

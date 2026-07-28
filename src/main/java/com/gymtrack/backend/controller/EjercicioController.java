@@ -5,6 +5,7 @@ import com.gymtrack.backend.dto.EjercicioDTO.CrearEjercicioDTO;
 import com.gymtrack.backend.dto.EjercicioDTO.EjercicioDTO;
 import com.gymtrack.backend.model.Ejercicio;
 import com.gymtrack.backend.service.EjercicioService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class EjercicioController {
     }
 
     @PostMapping
-    public ResponseEntity<EjercicioDTO> crear(@RequestBody CrearEjercicioDTO dto){
+    public ResponseEntity<EjercicioDTO> crear(@RequestBody @Valid CrearEjercicioDTO dto){
 
         EjercicioDTO ejercicio = ejercicioService.crear(dto);
 
@@ -46,7 +47,7 @@ public class EjercicioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EjercicioDTO> actualizar(@PathVariable Long id, @RequestBody ActualizarEjercicioDTO dto){
+    public ResponseEntity<EjercicioDTO> actualizar(@PathVariable Long id, @RequestBody @Valid ActualizarEjercicioDTO dto){
 
         return ResponseEntity.ok(ejercicioService.actualizar(id, dto));
     }

@@ -4,6 +4,7 @@ import com.gymtrack.backend.dto.GrupoMuscularDTO.ActualizarGrupoMuscularDTO;
 import com.gymtrack.backend.dto.GrupoMuscularDTO.CrearGrupoMuscularDTO;
 import com.gymtrack.backend.dto.GrupoMuscularDTO.GrupoMuscularDTO;
 import com.gymtrack.backend.service.GrupoMuscularService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class GrupoMuscularController {
     }
 
     @PostMapping
-    public ResponseEntity<GrupoMuscularDTO> crear(@RequestBody CrearGrupoMuscularDTO dto){
+    public ResponseEntity<GrupoMuscularDTO> crear(@RequestBody @Valid CrearGrupoMuscularDTO dto){
 
         GrupoMuscularDTO grupoMuscular = grupoMuscularService.crear(dto);
 
@@ -39,7 +40,7 @@ public class GrupoMuscularController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<GrupoMuscularDTO> actualizar(@PathVariable Long id, @RequestBody ActualizarGrupoMuscularDTO dto){
+    public ResponseEntity<GrupoMuscularDTO> actualizar(@PathVariable Long id, @RequestBody @Valid ActualizarGrupoMuscularDTO dto){
 
         return ResponseEntity.ok(grupoMuscularService.actualizar(id, dto));
     }

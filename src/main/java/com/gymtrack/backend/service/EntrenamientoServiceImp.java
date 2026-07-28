@@ -134,19 +134,6 @@ public class EntrenamientoServiceImp implements EntrenamientoService{
             throw new NotFoundException("No existe un usuario con id " + usuarioId);
     }
 
-    private void validarRutinaExiste(Long rutinaId){
-
-        if (!rutinaRepository.existsById(rutinaId))
-
-            throw new NotFoundException("No existe una rutina con id " + rutinaId);
-    }
-
-    private Rutina buscarRutinaPorId(Long rutinaId){
-
-        return rutinaRepository.findById(rutinaId)
-                .orElseThrow(() -> new NotFoundException("No se ha encontrado una rutina con id " + rutinaId));
-    }
-
     private Usuario buscarUsuarioPorId(Long usuarioId){
 
         return usuarioRepository.findById(usuarioId)
