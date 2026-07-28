@@ -11,13 +11,10 @@ import lombok.*;
 @Builder
 public class ActualizarEntrenamientoEjercicioDTO {
 
-    @NotNull
     private Long ejercicioId;
 
-    @NotNull
     @Min(1)
     private Integer orden;
 
-    @NotEmpty
     private String observaciones;
 }

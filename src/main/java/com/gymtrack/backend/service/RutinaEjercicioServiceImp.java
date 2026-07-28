@@ -60,10 +60,6 @@ public class RutinaEjercicioServiceImp implements RutinaEjercicioService{
         rutinaEjercicio.setRutina(rutina);
         rutinaEjercicio.setEjercicio(ejercicio);
 
-        System.out.println("Rutina ID: " + rutina.getId());
-        System.out.println("Ejercicio ID: " + ejercicio.getId());
-        System.out.println("Rutina en entidad: " + rutinaEjercicio.getRutina().getId());
-        System.out.println("Ejercicio en entidad: " + rutinaEjercicio.getEjercicio().getId());
 
         return rutinaEjercicioMapper.toDTO(rutinaEjercicioRepository.save(rutinaEjercicio));
 
@@ -115,7 +111,7 @@ public class RutinaEjercicioServiceImp implements RutinaEjercicioService{
     private Rutina buscarEntidadRutinaPorId(Long id){
 
         return rutinaRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("No se ha encontraado una rutina con id " + id));
+                .orElseThrow(() -> new NotFoundException("No se ha encontrado una rutina con id " + id));
     }
 
     private Ejercicio buscarEntidadEjercicioPorId(Long id){
