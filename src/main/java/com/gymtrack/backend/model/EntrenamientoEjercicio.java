@@ -16,7 +16,7 @@ import lombok.*;
               )
         }
 )
-public class EntrenamientoEjercicio {
+public class EntrenamientoEjercicio extends EntidadAuditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
