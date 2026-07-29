@@ -14,10 +14,6 @@ import org.hibernate.validator.constraints.Length;
 public class CrearSerieEjercicioDTO {
 
     @NotNull
-    @Min(1)
-    private Integer numeroSerie;
-
-    @NotNull
     @Positive
     private Double peso;
 

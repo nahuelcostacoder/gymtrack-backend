@@ -95,7 +95,7 @@ public class EntrenamientoEjercicioServiceImp implements EntrenamientoEjercicioS
 
     private EntrenamientoEjercicio buscarEntidadPorIds(Long entrenamientoId, Long entrenamientoEjercicioId){
 
-        return entrenamientoEjercicioRepository.findByEntrenamientoIdAndId(entrenamientoId, entrenamientoEjercicioId)
+        return entrenamientoEjercicioRepository.findByEntrenamientoIdAndId(entrenamientoEjercicioId, entrenamientoId)
                 .orElseThrow(() -> new NotFoundException("No existe un EntrenamientoEjercicio vinculado a ese id de entrenamiento ejercicio y ese entrenamientoEjercicio"));
 
     }
