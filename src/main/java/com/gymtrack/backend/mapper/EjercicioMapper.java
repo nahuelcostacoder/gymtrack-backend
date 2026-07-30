@@ -5,9 +5,7 @@ import com.gymtrack.backend.dto.EjercicioDTO.CrearEjercicioDTO;
 import com.gymtrack.backend.dto.EjercicioDTO.EjercicioDTO;
 import com.gymtrack.backend.model.Ejercicio;
 import com.gymtrack.backend.model.GrupoMuscular;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 
 import java.util.List;
 import java.util.Set;
@@ -24,6 +22,10 @@ public interface EjercicioMapper {
     Ejercicio toEntity(CrearEjercicioDTO dto);
 
     @Mapping(target = "gruposMusculares", ignore = true)
+    @BeanMapping(
+            nullValuePropertyMappingStrategy =
+                    NullValuePropertyMappingStrategy.IGNORE
+    )
     void updateEntity(ActualizarEjercicioDTO dto, @MappingTarget Ejercicio ejercicio);
 
     //los recibe de la entidad que son varios por eso un set

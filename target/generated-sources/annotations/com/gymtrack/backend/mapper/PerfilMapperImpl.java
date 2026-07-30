@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-28T09:55:22-0300",
+    date = "2026-07-29T21:56:43-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.11 (Microsoft)"
 )
 @Component
@@ -58,11 +58,21 @@ public class PerfilMapperImpl implements PerfilMapper {
             return;
         }
 
-        perfil.setBiografia( dto.getBiografia() );
-        perfil.setPeso( dto.getPeso() );
-        perfil.setAltura( dto.getAltura() );
-        perfil.setObjetivo( dto.getObjetivo() );
-        perfil.setNivelEntrenamiento( dto.getNivelEntrenamiento() );
+        if ( dto.getBiografia() != null ) {
+            perfil.setBiografia( dto.getBiografia() );
+        }
+        if ( dto.getPeso() != null ) {
+            perfil.setPeso( dto.getPeso() );
+        }
+        if ( dto.getAltura() != null ) {
+            perfil.setAltura( dto.getAltura() );
+        }
+        if ( dto.getObjetivo() != null ) {
+            perfil.setObjetivo( dto.getObjetivo() );
+        }
+        if ( dto.getNivelEntrenamiento() != null ) {
+            perfil.setNivelEntrenamiento( dto.getNivelEntrenamiento() );
+        }
     }
 
     private Long perfilUsuarioId(Perfil perfil) {

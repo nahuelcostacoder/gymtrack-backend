@@ -70,17 +70,23 @@ public class RutinaEjercicioServiceImp implements RutinaEjercicioService{
 
         RutinaEjercicio rutinaEjercicio = buscarEntidadRutinaEjercicioPorIdYRutina(idRutinaEjercicio, idRutina);
 
-
         Rutina rutina = buscarEntidadRutinaPorId(idRutina);
-        Ejercicio ejercicio = buscarEntidadEjercicioPorId(dto.getEjercicioId());
 
-        validarEjercicioRepetidoAlActualizar(rutina.getId(), ejercicio.getId(), rutinaEjercicio.getId());
-        validarOrdenAlActualizar(rutina.getId(), dto.getOrden(), rutinaEjercicio.getId());
+        if (dto.getEjercicioId() != null){
+
+            Ejercicio ejercicio = buscarEntidadEjercicioPorId(dto.getEjercicioId());
+
+            validarEjercicioRepetidoAlActualizar(rutina.getId(), ejercicio.getId(), rutinaEjercicio.getId());
+
+            rutinaEjercicio.setEjercicio(ejercicio);
+        }
+
+        if (dto.getOrden() != null){
+
+            validarOrdenAlActualizar(rutina.getId(), dto.getOrden(), rutinaEjercicio.getId());
+        }
 
         rutinaEjercicioMapper.updateEntity(dto, rutinaEjercicio);
-
-        rutinaEjercicio.setRutina(rutina);
-        rutinaEjercicio.setEjercicio(ejercicio);
 
         return rutinaEjercicioMapper.toDTO(rutinaEjercicioRepository.save(rutinaEjercicio));
     }

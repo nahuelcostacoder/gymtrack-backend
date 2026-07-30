@@ -39,7 +39,7 @@ public class GrupoMuscularController {
         return ResponseEntity.created(URI.create("/api/gruposMusculares/" + grupoMuscular.getId())).body(grupoMuscular);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<GrupoMuscularDTO> actualizar(@PathVariable Long id, @RequestBody @Valid ActualizarGrupoMuscularDTO dto){
 
         return ResponseEntity.ok(grupoMuscularService.actualizar(id, dto));

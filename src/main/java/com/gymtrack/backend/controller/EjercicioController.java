@@ -46,7 +46,7 @@ public class EjercicioController {
         return ResponseEntity.created(URI.create("/api/ejercicios/" + ejercicio.getId())).body(ejercicio);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<EjercicioDTO> actualizar(@PathVariable Long id, @RequestBody @Valid ActualizarEjercicioDTO dto){
 
         return ResponseEntity.ok(ejercicioService.actualizar(id, dto));

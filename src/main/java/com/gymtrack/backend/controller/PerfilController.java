@@ -46,7 +46,7 @@ public class PerfilController {
         return ResponseEntity.created(URI.create("/api/perfiles/" + perfil.getId())).body(perfil);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<PerfilDTO> actualizar(@PathVariable Long id, @RequestBody @Valid ActualizarPerfilDTO dto){
 
         return ResponseEntity.ok(perfilService.actualizar(id, dto));

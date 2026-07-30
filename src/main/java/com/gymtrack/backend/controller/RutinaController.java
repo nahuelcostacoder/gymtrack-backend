@@ -41,7 +41,7 @@ public class RutinaController {
         return ResponseEntity.created(URI.create("/api/rutinas/" + rutina.getId())).body(rutina);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<RutinaDTO> actualizar(@PathVariable Long id, @RequestBody @Valid ActualizarRutinaDTO dto){
 
         return ResponseEntity.ok(rutinaService.actualizar(id, dto));

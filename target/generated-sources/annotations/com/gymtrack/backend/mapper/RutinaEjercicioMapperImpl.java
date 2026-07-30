@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-28T09:55:22-0300",
+    date = "2026-07-29T21:56:42-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.11 (Microsoft)"
 )
 @Component
@@ -63,11 +63,23 @@ public class RutinaEjercicioMapperImpl implements RutinaEjercicioMapper {
             return;
         }
 
-        rutinaEjercicio.setOrden( dto.getOrden() );
-        rutinaEjercicio.setSeriesObjetivo( dto.getSeriesObjetivo() );
-        rutinaEjercicio.setRepeticionesObjetivo( dto.getRepeticionesObjetivo() );
-        rutinaEjercicio.setPesoObjetivo( dto.getPesoObjetivo() );
-        rutinaEjercicio.setDescansoSegundos( dto.getDescansoSegundos() );
-        rutinaEjercicio.setObservaciones( dto.getObservaciones() );
+        if ( dto.getOrden() != null ) {
+            rutinaEjercicio.setOrden( dto.getOrden() );
+        }
+        if ( dto.getSeriesObjetivo() != null ) {
+            rutinaEjercicio.setSeriesObjetivo( dto.getSeriesObjetivo() );
+        }
+        if ( dto.getRepeticionesObjetivo() != null ) {
+            rutinaEjercicio.setRepeticionesObjetivo( dto.getRepeticionesObjetivo() );
+        }
+        if ( dto.getPesoObjetivo() != null ) {
+            rutinaEjercicio.setPesoObjetivo( dto.getPesoObjetivo() );
+        }
+        if ( dto.getDescansoSegundos() != null ) {
+            rutinaEjercicio.setDescansoSegundos( dto.getDescansoSegundos() );
+        }
+        if ( dto.getObservaciones() != null ) {
+            rutinaEjercicio.setObservaciones( dto.getObservaciones() );
+        }
     }
 }

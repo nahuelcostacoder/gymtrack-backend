@@ -39,7 +39,7 @@ public class UsuarioController {
         return ResponseEntity.created(URI.create("/api/usuarios/" + usuario.getId())).body(usuario);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<UsuarioDTO> actualizar(@PathVariable Long id, @RequestBody @Valid ActualizarUsuarioDTO dto){
 
         return ResponseEntity.ok(usuarioService.actualizar(id, dto));

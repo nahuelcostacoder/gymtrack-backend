@@ -45,7 +45,7 @@ public class RutinaEjercicioController {
 
     }
 
-    @PutMapping("/{rutinaId}/ejercicios/{rutinaEjercicioId}")
+    @PatchMapping("/{rutinaId}/ejercicios/{rutinaEjercicioId}")
     public ResponseEntity<RutinaEjercicioDTO> actualizar(@PathVariable Long rutinaId
             , @PathVariable Long rutinaEjercicioId
             , @RequestBody @Valid ActualizarRutinaEjercicioDTO dto){

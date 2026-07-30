@@ -65,8 +65,11 @@ public class RutinaServiceImp implements RutinaService {
 
         //ademas tiraria error pq veria que si esta rutina ya existia, ve el nombre y va a decir que ya existe al actualizar
 
-        validarNombreDuplicado(dto.getNombre(), rutina.getUsuario().getId(), rutina.getId());
+       if (dto.getNombre() != null) {
 
+           validarNombreDuplicado(dto.getNombre(), rutina.getUsuario().getId(), rutina.getId());
+
+       }
         rutinaMapper.updateEntity(dto, rutina);
 
 

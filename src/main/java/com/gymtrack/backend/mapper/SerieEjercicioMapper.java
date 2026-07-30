@@ -13,6 +13,10 @@ public interface SerieEjercicioMapper {
 
     SerieEjercicioDTO toDto(SerieEjercicio serieEjercicio);
 
+    @BeanMapping(
+            nullValuePropertyMappingStrategy =
+                    NullValuePropertyMappingStrategy.IGNORE
+    )
     SerieEjercicio toEntity(CrearSerieEjercicioDTO dto);
 
     @BeanMapping(

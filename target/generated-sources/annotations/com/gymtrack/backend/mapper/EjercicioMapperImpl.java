@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-28T09:55:22-0300",
+    date = "2026-07-29T21:56:42-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.11 (Microsoft)"
 )
 @Component
@@ -53,8 +53,14 @@ public class EjercicioMapperImpl implements EjercicioMapper {
             return;
         }
 
-        ejercicio.setNombre( dto.getNombre() );
-        ejercicio.setDescripcion( dto.getDescripcion() );
-        ejercicio.setVideoUrl( dto.getVideoUrl() );
+        if ( dto.getNombre() != null ) {
+            ejercicio.setNombre( dto.getNombre() );
+        }
+        if ( dto.getDescripcion() != null ) {
+            ejercicio.setDescripcion( dto.getDescripcion() );
+        }
+        if ( dto.getVideoUrl() != null ) {
+            ejercicio.setVideoUrl( dto.getVideoUrl() );
+        }
     }
 }

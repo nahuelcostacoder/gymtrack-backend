@@ -5,9 +5,7 @@ import com.gymtrack.backend.dto.RutinaDTO.ActualizarRutinaDTO;
 import com.gymtrack.backend.dto.RutinaDTO.CrearRutinaDTO;
 import com.gymtrack.backend.dto.RutinaDTO.RutinaDTO;
 import com.gymtrack.backend.model.Rutina;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring",
         uses = EjercicioMapper.class
@@ -23,5 +21,9 @@ public interface RutinaMapper {
 
     @Mapping(target = "usuario", ignore = true)
     @Mapping(target = "ejercicios", ignore = true)
+    @BeanMapping(
+            nullValuePropertyMappingStrategy =
+                    NullValuePropertyMappingStrategy.IGNORE
+    )
     void updateEntity(ActualizarRutinaDTO dto, @MappingTarget Rutina rutina);
 }

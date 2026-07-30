@@ -56,8 +56,10 @@ public class UsuarioServiceImp implements UsuarioService{
 
         Usuario usuario = buscarEntidadPorId(id);
 
-        validarNombreUsuarioDisponibleActualizar(dto.getNombre(), usuario);
+        if (dto.getUsername() != null){
 
+            validarNombreUsuarioDisponibleActualizar(dto.getUsername(), usuario);
+        }
 
         usuarioMapper.updateEntity(dto, usuario);
 

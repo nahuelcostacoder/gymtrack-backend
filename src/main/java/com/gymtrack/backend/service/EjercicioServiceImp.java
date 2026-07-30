@@ -82,8 +82,12 @@ public class EjercicioServiceImp implements EjercicioService{
 
         //ahora me quedan los grupos musculares
 
-        Set<GrupoMuscular> gruposMusculares = new HashSet<>(grupoMuscularRepository.findAllById(dto.getGruposMuscularesIds()));
-        ejercicio.setGruposMusculares(gruposMusculares);
+        if (dto.getGruposMuscularesIds() != null){
+
+            Set<GrupoMuscular> gruposMusculares = new HashSet<>(grupoMuscularRepository.findAllById(dto.getGruposMuscularesIds()));
+            ejercicio.setGruposMusculares(gruposMusculares);
+        }
+
 
         return ejercicioMapper.toDto(ejercicioRepository.save(ejercicio));
     }

@@ -5,9 +5,7 @@ import com.gymtrack.backend.dto.UsuarioDTO.CrearUsuarioDTO;
 import com.gymtrack.backend.dto.UsuarioDTO.UsuarioDTO;
 import com.gymtrack.backend.model.Rol;
 import com.gymtrack.backend.model.Usuario;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public interface UsuarioMapper {
@@ -18,6 +16,10 @@ public interface UsuarioMapper {
     Usuario toEntity(CrearUsuarioDTO usuarioDto);
 
     @Mapping(target = "roles", ignore = true) //lo mismo aca
+    @BeanMapping(
+            nullValuePropertyMappingStrategy =
+                    NullValuePropertyMappingStrategy.IGNORE
+    )
     void updateEntity(
             ActualizarUsuarioDTO dto,
             @MappingTarget Usuario usuario //mapping target es para decirle a mapStruct que modifique el ya exitente (el que le pasamos por parametro)
