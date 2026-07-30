@@ -8,7 +8,10 @@ import org.mapstruct.Mapper;
 import org.mapstruct.*;
 
 @Mapper(componentModel = "spring",
-        uses = EjercicioMapper.class
+        uses = {
+                EjercicioMapper.class,
+                SerieEjercicioMapper.class
+        }
 )
 
 public interface EntrenamientoEjercicioMapper {

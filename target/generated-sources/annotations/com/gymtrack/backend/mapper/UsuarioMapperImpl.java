@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-28T09:55:22-0300",
+    date = "2026-07-30T15:04:52-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.11 (Microsoft)"
 )
 @Component
@@ -63,11 +63,21 @@ public class UsuarioMapperImpl implements UsuarioMapper {
             return;
         }
 
-        usuario.setUsername( dto.getUsername() );
-        usuario.setNombre( dto.getNombre() );
-        usuario.setApellido( dto.getApellido() );
-        usuario.setFotoPerfilUrl( dto.getFotoPerfilUrl() );
-        usuario.setFechaNacimiento( dto.getFechaNacimiento() );
+        if ( dto.getUsername() != null ) {
+            usuario.setUsername( dto.getUsername() );
+        }
+        if ( dto.getNombre() != null ) {
+            usuario.setNombre( dto.getNombre() );
+        }
+        if ( dto.getApellido() != null ) {
+            usuario.setApellido( dto.getApellido() );
+        }
+        if ( dto.getFotoPerfilUrl() != null ) {
+            usuario.setFotoPerfilUrl( dto.getFotoPerfilUrl() );
+        }
+        if ( dto.getFechaNacimiento() != null ) {
+            usuario.setFechaNacimiento( dto.getFechaNacimiento() );
+        }
     }
 
     protected Set<String> rolSetToStringSet(Set<Rol> set) {

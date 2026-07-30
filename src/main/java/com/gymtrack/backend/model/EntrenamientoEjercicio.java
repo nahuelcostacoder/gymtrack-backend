@@ -3,6 +3,9 @@ package com.gymtrack.backend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
@@ -35,4 +38,13 @@ public class EntrenamientoEjercicio extends EntidadAuditable {
 
     @Column(length = 500)
     private String observaciones;
+
+    @OneToMany(
+            mappedBy = "entrenamientoEjercicio",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @OrderBy("numeroSerie ASC")
+    @Builder.Default
+    private List<SerieEjercicio> series = new ArrayList<>();
 }

@@ -3,14 +3,18 @@ package com.gymtrack.backend.mapper;
 import com.gymtrack.backend.dto.EntrenamientoEjercicioDTO.ActualizarEntrenamientoEjercicioDTO;
 import com.gymtrack.backend.dto.EntrenamientoEjercicioDTO.CrearEntrenamientoEjercicioDTO;
 import com.gymtrack.backend.dto.EntrenamientoEjercicioDTO.EntrenamientoEjercicioDTO;
+import com.gymtrack.backend.dto.SeriesEjercicioDTO.SerieEjercicioDTO;
 import com.gymtrack.backend.model.EntrenamientoEjercicio;
+import com.gymtrack.backend.model.SerieEjercicio;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-07-28T13:40:02-0300",
+    date = "2026-07-30T16:11:45-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.11 (Microsoft)"
 )
 @Component
@@ -18,6 +22,8 @@ public class EntrenamientoEjercicioMapperImpl implements EntrenamientoEjercicioM
 
     @Autowired
     private EjercicioMapper ejercicioMapper;
+    @Autowired
+    private SerieEjercicioMapper serieEjercicioMapper;
 
     @Override
     public EntrenamientoEjercicioDTO toDto(EntrenamientoEjercicio entrenamientoEjercicio) {
@@ -31,6 +37,7 @@ public class EntrenamientoEjercicioMapperImpl implements EntrenamientoEjercicioM
         entrenamientoEjercicioDTO.ejercicio( ejercicioMapper.toDto( entrenamientoEjercicio.getEjercicio() ) );
         entrenamientoEjercicioDTO.orden( entrenamientoEjercicio.getOrden() );
         entrenamientoEjercicioDTO.observaciones( entrenamientoEjercicio.getObservaciones() );
+        entrenamientoEjercicioDTO.series( serieEjercicioListToSerieEjercicioDTOList( entrenamientoEjercicio.getSeries() ) );
 
         return entrenamientoEjercicioDTO.build();
     }
@@ -61,5 +68,18 @@ public class EntrenamientoEjercicioMapperImpl implements EntrenamientoEjercicioM
         if ( dto.getObservaciones() != null ) {
             entrenamientoEjercicio.setObservaciones( dto.getObservaciones() );
         }
+    }
+
+    protected List<SerieEjercicioDTO> serieEjercicioListToSerieEjercicioDTOList(List<SerieEjercicio> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<SerieEjercicioDTO> list1 = new ArrayList<SerieEjercicioDTO>( list.size() );
+        for ( SerieEjercicio serieEjercicio : list ) {
+            list1.add( serieEjercicioMapper.toDto( serieEjercicio ) );
+        }
+
+        return list1;
     }
 }
