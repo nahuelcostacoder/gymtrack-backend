@@ -1,6 +1,7 @@
 package com.gymtrack.backend.dto.AmistadDTO;
 
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @NoArgsConstructor
@@ -9,5 +10,6 @@ import lombok.*;
 @Builder
 public class EnviarSolicitudDTO {
 
+    @NotNull
     private Long receptorId;
 }
