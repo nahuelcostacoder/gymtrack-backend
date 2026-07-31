@@ -1,6 +1,8 @@
 package com.gymtrack.backend.dto.EjercicioDTO;
 
+import com.gymtrack.backend.dto.EntrenamientoEjercicioDTO.EntrenamientoEjercicioDTO;
 import com.gymtrack.backend.dto.SeriesEjercicioDTO.SerieEjercicioDTO;
+import com.gymtrack.backend.model.EntrenamientoEjercicio;
 import com.gymtrack.backend.model.SerieEjercicio;
 import lombok.*;
 
@@ -19,4 +21,6 @@ public class HistorialEjercicioDTO {
     private String nombreRutina;
 
     private List<SerieEjercicioDTO> series;
+
+
 }

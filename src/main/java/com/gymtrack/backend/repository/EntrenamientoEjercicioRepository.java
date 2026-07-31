@@ -17,5 +17,7 @@ public interface EntrenamientoEjercicioRepository extends JpaRepository<Entrenam
     boolean existsByEntrenamientoIdAndOrden(Long entrenamientoId, Integer orden);
     boolean existsByEntrenamientoIdAndEjercicioIdAndIdNot(Long entrenamientoId, Long ejercicioId, Long id);
     boolean existsByEntrenamientoIdAndOrdenAndIdNot(Long entrenamientoId, Integer orden, Long id);
+    List<EntrenamientoEjercicio> findByEntrenamientoUsuarioIdAndEjercicioIdOrderByEntrenamientoFechaInicioDesc(Long usuarioId, Long ejercicioId);
+
 }
 
