@@ -1,4 +1,4 @@
-package com.gymtrack.backend.config;
+package com.gymtrack.backend.security;
 
 import com.gymtrack.backend.utils.JwtUtils;
 import jakarta.servlet.FilterChain;

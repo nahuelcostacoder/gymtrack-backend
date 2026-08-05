@@ -1,5 +1,6 @@
 package com.gymtrack.backend.config;
 
+import com.gymtrack.backend.security.JwtTokenValidator;
 import com.gymtrack.backend.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
