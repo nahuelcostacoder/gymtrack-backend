@@ -14,8 +14,8 @@ public interface AmistadRepository extends JpaRepository<Amistad, Long> {
     @Query("""
             SELECT a
             FROM Amistad a
-            WHERE (a.emisor.id = :usuarioId OR a.receptor.id = :usuarioId)
-                AND a.estado = com.gymtrack.backend.enums.EstadoAmistad.ACEPTADA
+            WHERE (a.emisorSolicitud.id = :usuarioId OR a.receptorSolicitud.id = :usuarioId)
+                AND a.estado = ACEPTADA
             """)
     List<Amistad> listarAmigos(Long usuarioId); //es mejor asi pq sino tendria que hacer dos consultas con jpa
     //una para emisor y otra para receptor
@@ -23,14 +23,14 @@ public interface AmistadRepository extends JpaRepository<Amistad, Long> {
     @Query("""
             SELECT a
             FROM Amistad a
-            WHERE a.receptor.id = usuarioId AND a.estado = com.gymtrack.backend.enums.EstadoAmistad.PENDIENTE
+            WHERE a.receptorSolicitud.id = :usuarioId AND a.estado = PENDIENTE
             """)
     List<Amistad> listarSolicitudesRecibidas(Long usuarioId);
 
     @Query("""
             SELECT a
             FROM Amistad a
-            WHERE a.emisor.id = :usuarioId and a.estado = com.gymtrack.backend.enums.EstadoAmistad.PENDIENTE
+            WHERE a.emisorSolicitud.id = :usuarioId and a.estado = PENDIENTE
             """)
     List<Amistad> listarSolicitudesEnviadas(Long usuarioId);
 }
