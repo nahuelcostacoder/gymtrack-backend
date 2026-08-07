@@ -1,7 +1,12 @@
 package com.gymtrack.backend.security;
 
-import com.gymtrack.backend.dto.Auth.AuthLoginRequestDTO;
-import com.gymtrack.backend.dto.Auth.AuthResponseDTO;
+import com.gymtrack.backend.dto.AuthDTO.AuthLoginRequestDTO;
+import com.gymtrack.backend.dto.AuthDTO.AuthResponseDTO;
+import com.gymtrack.backend.dto.UsuarioDTO.CrearUsuarioDTO;
+import com.gymtrack.backend.dto.UsuarioDTO.UsuarioDTO;
+import com.gymtrack.backend.mapper.UsuarioMapper;
+import com.gymtrack.backend.model.Usuario;
+import com.gymtrack.backend.repository.UsuarioRepository;
 import com.gymtrack.backend.utils.JwtUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -18,6 +23,9 @@ public class AuthenticationService {
 
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
+    private final UsuarioMapper usuarioMapper;
+    private final PasswordEncoder passwordEncoder;
+    private final UsuarioRepository usuarioRepository;
 
     //recibo del controller
     public AuthResponseDTO loguearUsuario(@Valid AuthLoginRequestDTO authLoginRequestDTO){
@@ -40,6 +48,17 @@ public class AuthenticationService {
         AuthResponseDTO authResponseDTO = new AuthResponseDTO(username, "Se ha logueado exitosamente", accessToken);
 
         return authResponseDTO;
+    }
+
+    public UsuarioDTO registrar(CrearUsuarioDTO dto){
+
+        Usuario usuario = usuarioMapper.toEntity(dto);
+
+        usuario.setPassword(passwordEncoder.encode(dto.getPassword()));
+
+        //agregar rol base!!!
+
+        return usuarioMapper.toDto(usuarioRepository.save(usuario));
     }
 
     private Authentication autenticar(String username, String password){
@@ -65,9 +84,8 @@ public class AuthenticationService {
                 null,
                 userDetails.getAuthorities()
         );*/
-
-
     }
+
 
 }
 

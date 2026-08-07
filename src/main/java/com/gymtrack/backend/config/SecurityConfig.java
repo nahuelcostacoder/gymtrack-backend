@@ -1,5 +1,6 @@
 package com.gymtrack.backend.config;
 
+import com.gymtrack.backend.security.CustomUserDetailsService;
 import com.gymtrack.backend.security.JwtTokenValidator;
 import com.gymtrack.backend.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final UserDetailsService userDetailsService;
+        private final CustomUserDetailsService userDetailsService;
     private final JwtUtils jwtUtils;
 
 
@@ -45,7 +46,7 @@ public class SecurityConfig {
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
-                .addFilterBefore(new JwtTokenValidator(jwtUtils), BasicAuthenticationFilter.class)
+                .addFilterBefore(new JwtTokenValidator(jwtUtils, userDetailsService), BasicAuthenticationFilter.class)
                 .build();
     }
 

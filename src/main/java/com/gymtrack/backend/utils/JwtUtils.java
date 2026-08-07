@@ -71,7 +71,7 @@ public class JwtUtils {
     }
 
 
-    public DecodedJWT validateToken(String token) {
+    public DecodedJWT validarToken(String token) {
 
         try {
 

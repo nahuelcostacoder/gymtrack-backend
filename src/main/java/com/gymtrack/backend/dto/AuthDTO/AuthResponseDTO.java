@@ -1,7 +1,6 @@
-package com.gymtrack.backend.dto.Auth;
+package com.gymtrack.backend.dto.AuthDTO;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.NotBlank;
 
 //obligo que siga ese orden
 @JsonPropertyOrder({"username", "message", "jwt", "status"})
