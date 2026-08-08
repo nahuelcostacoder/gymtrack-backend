@@ -1,22 +1,15 @@
 package com.gymtrack.backend.dto.RolDTO;
 
-
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-
-import java.util.Set;
 
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter
 @Builder
-public class CrearRolDTO {
+public class ActualizarRolDTO {
 
     @NotBlank
     @Size(max = 30)
     private String nombre;
-
-    @NotNull
-    private Set<Long> permisosIds;
 }
