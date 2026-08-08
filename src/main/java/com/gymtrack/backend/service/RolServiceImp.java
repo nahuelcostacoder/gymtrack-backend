@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -57,7 +58,19 @@ public class RolServiceImp implements RolService{
 
         Rol rol = rolMapper.toEntity(dto);
 
+        Set<Long> permisosIds = dto.getPermisosIds();
+
         Set<Permiso> permisos = new HashSet<>(permisoRepository.findAllById(dto.getPermisosIds()));
+
+        Set<Long> encontrados = permisos.stream().map(Permiso::getId).collect(Collectors.toSet());
+
+        Set<Long> faltantes = new HashSet<>(permisosIds);
+        faltantes.removeAll(encontrados); //si queda alguno, significa que no existe
+
+        if (!faltantes.isEmpty()){
+
+            throw new NotFoundException("No existen los permisos con ids: " + faltantes);
+        }
 
         rol.setPermisos(permisos);
 

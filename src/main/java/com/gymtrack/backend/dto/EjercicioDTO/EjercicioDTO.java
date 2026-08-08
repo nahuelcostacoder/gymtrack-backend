@@ -18,6 +18,7 @@ import java.util.Set;
 public class EjercicioDTO {
 
     private Long id;
+
     private String nombre;
 
     private String descripcion;

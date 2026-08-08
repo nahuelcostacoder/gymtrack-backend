@@ -3,6 +3,7 @@ package com.gymtrack.backend.service;
 import com.gymtrack.backend.dto.RutinaDTO.ActualizarRutinaDTO;
 import com.gymtrack.backend.dto.RutinaDTO.CrearRutinaDTO;
 import com.gymtrack.backend.dto.RutinaDTO.RutinaDTO;
+import com.gymtrack.backend.exception.AccesoDenegadoException;
 import com.gymtrack.backend.exception.AlreadyExistsException;
 import com.gymtrack.backend.exception.NotFoundException;
 import com.gymtrack.backend.mapper.RutinaMapper;
@@ -40,9 +41,9 @@ public class RutinaServiceImp implements RutinaService {
     }
 
     @Override
-    public RutinaDTO crear(CrearRutinaDTO dto) {
+    public RutinaDTO crear(Long usuarioId, CrearRutinaDTO dto) {
 
-        Usuario usuario = buscarEntidadUsuarioPorId(dto.getUsuarioId());
+        Usuario usuario = buscarEntidadUsuarioPorId(usuarioId);
 
         validarNombreDuplicado(dto.getNombre(), usuario.getId());
 
@@ -57,9 +58,14 @@ public class RutinaServiceImp implements RutinaService {
     }
 
     @Override
-    public RutinaDTO actualizar(Long id, ActualizarRutinaDTO dto) {
+    public RutinaDTO actualizar(Long usuarioId, Long id, ActualizarRutinaDTO dto) {
 
         Rutina rutina = buscarEntidadRutinaPorId(id);
+
+        if (!rutina.getUsuario().getId().equals(usuarioId)){
+
+            throw new AccesoDenegadoException("No podes modificar una rutina que no te pertenece");
+        }
 
         //que sucede, si lo valido de la forma basica lo que hace es ver si se repite el nombre en la totalidad de las rutinas, pero la realidad es que dos usuarios dif pueden tener el mismo nombre de rutina
 
@@ -70,6 +76,7 @@ public class RutinaServiceImp implements RutinaService {
            validarNombreDuplicado(dto.getNombre(), rutina.getUsuario().getId(), rutina.getId());
 
        }
+
         rutinaMapper.updateEntity(dto, rutina);
 
 
@@ -77,12 +84,16 @@ public class RutinaServiceImp implements RutinaService {
     }
 
     @Override
-    public void eliminar(Long id) {
+    public void eliminar(Long usuarioId, Long id) {
 
-        if (!rutinaRepository.existsById(id))
-            throw new NotFoundException("No existe una rutina con ID " + id);
+        Rutina rutina = buscarEntidadRutinaPorId(id);
 
-        rutinaRepository.deleteById(id);
+        if (!rutina.getUsuario().getId().equals(usuarioId)){
+
+            throw new AccesoDenegadoException("No podes modificar una rutina que no te pertenece");
+        }
+
+        rutinaRepository.delete(rutina);
 
     }
 

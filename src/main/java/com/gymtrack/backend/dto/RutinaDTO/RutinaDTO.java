@@ -21,7 +21,6 @@ public class RutinaDTO {
 
     private boolean publica;
 
-    //esto es temporal hasta implementar JWT
     private Long usuarioId;
 
     //esto de rutina ejercicio recordemos

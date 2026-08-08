@@ -12,8 +12,8 @@ public interface RutinaService {
 
     List<RutinaDTO> listar();
     RutinaDTO buscarPorId(Long id);
-    RutinaDTO crear(CrearRutinaDTO dto);
-    RutinaDTO actualizar(Long id, ActualizarRutinaDTO dto);
-    void eliminar(Long id);
+    RutinaDTO crear(Long usuarioId, CrearRutinaDTO dto);
+    RutinaDTO actualizar(Long usuarioId, Long id, ActualizarRutinaDTO dto);
+    void eliminar(Long usuarioId, Long id);
 
 }
