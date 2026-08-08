@@ -11,8 +11,8 @@ public interface PerfilService {
 
     List<PerfilDTO> listar();
     PerfilDTO buscarPorId(Long id);
-    PerfilDTO crear(CrearPerfilDTO dto);
-    PerfilDTO actualizar(Long id, ActualizarPerfilDTO dto);
-    void eliminar(Long id);
+    PerfilDTO crear(Long usuarioId, CrearPerfilDTO dto);
+    PerfilDTO actualizar(Long usuarioId, Long id, ActualizarPerfilDTO dto);
+    void eliminar(Long usuarioId, Long id);
     PerfilDTO buscarPorIdUsuario(Long id);
 }

@@ -3,6 +3,8 @@ package com.gymtrack.backend.service;
 import com.gymtrack.backend.dto.PerfilDTO.ActualizarPerfilDTO;
 import com.gymtrack.backend.dto.PerfilDTO.CrearPerfilDTO;
 import com.gymtrack.backend.dto.PerfilDTO.PerfilDTO;
+import com.gymtrack.backend.exception.AccesoDenegadoException;
+import com.gymtrack.backend.exception.EstadoInvalidoException;
 import com.gymtrack.backend.exception.NotFoundException;
 import com.gymtrack.backend.mapper.PerfilMapper;
 import com.gymtrack.backend.model.Perfil;
@@ -39,13 +41,20 @@ public class PerfilServiceImp implements PerfilService{
     }
 
     @Override
-    public PerfilDTO crear(CrearPerfilDTO dto) {
+    public PerfilDTO crear(Long usuarioId, CrearPerfilDTO dto) {
+
+        Usuario usuario = usuarioRepository.findById(usuarioId)
+                .orElseThrow(() -> new NotFoundException("No se ha encontrado un usuario con el ID " + usuarioId));
+        //busco el usuario con ese id para despues guardarlo completo con su correspondiente entidad en la bd
+
+
+        if (perfilRepository.existsByUsuarioId(usuarioId)) {
+            throw new EstadoInvalidoException(
+                    "El usuario ya tiene un perfil"
+            );
+        }
 
         Perfil perfil = perfilMapper.toEntity(dto);
-
-        Usuario usuario = usuarioRepository.findById(dto.getUsuarioId())
-                .orElseThrow(() -> new NotFoundException("No se ha encontrado un usuario con el ID " + dto.getUsuarioId()));
-        //busco el usuario con ese id para despues guardarlo completo con su correspondiente entidad en la bd
 
         perfil.setUsuario(usuario);
 
@@ -56,9 +65,14 @@ public class PerfilServiceImp implements PerfilService{
     }
 
     @Override
-    public PerfilDTO actualizar(Long id, ActualizarPerfilDTO dto) {
+    public PerfilDTO actualizar(Long usuarioId, Long id, ActualizarPerfilDTO dto) {
 
         Perfil perfil = buscarEntidadPorId(id);
+
+        if (!perfil.getUsuario().getId().equals(usuarioId)){
+
+            throw new AccesoDenegadoException("No podes actualizar un perfil que no es tuyo");
+        }
 
         perfilMapper.updateEntity(dto, perfil);
 
@@ -68,12 +82,16 @@ public class PerfilServiceImp implements PerfilService{
     }
 
     @Override
-    public void eliminar(Long id) {
+    public void eliminar(Long usuarioId, Long id) {
 
-        if (!perfilRepository.existsById(id))
-            throw new NotFoundException("No se ha encontrado un perfil con ID " + id);
+        Perfil perfil = buscarEntidadPorId(id);
 
-        perfilRepository.deleteById(id);
+        if (!perfil.getUsuario().getId().equals(usuarioId)){
+
+            throw new AccesoDenegadoException("No podes eliminar un perfil que no es tuyo");
+        }
+
+        perfilRepository.delete(perfil);
     }
 
     @Override

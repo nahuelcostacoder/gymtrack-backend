@@ -19,19 +19,15 @@ public class ActualizarPerfilDTO {
     @Size(max = 500)
     private String biografia;
 
-    @NotNull
     @DecimalMin(value = "20.0")
     @DecimalMax(value = "400.0")
     private BigDecimal peso;
 
-    @NotNull
     @DecimalMin(value = "0.80")
     @DecimalMax(value = "2.80")
     private BigDecimal altura;
 
-    @NotNull
     private Objetivo objetivo;
 
-    @NotNull
     private NivelEntrenamiento nivelEntrenamiento;
 }

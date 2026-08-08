@@ -35,8 +35,6 @@ public class CrearPerfilDTO {
     @NotNull
     private NivelEntrenamiento nivelEntrenamiento;
 
-    @NotNull
-    private Long usuarioId;
 }
 // la idea seria que el usuario se cree con auth y luego el
 //front end: Si no existe un perfil, el backend responde, por ejemplo:
