@@ -1,5 +1,6 @@
 package com.gymtrack.backend.mapper;
 
+import com.gymtrack.backend.dto.UsuarioDTO.ActualizarUsuarioAdminDTO;
 import com.gymtrack.backend.dto.UsuarioDTO.ActualizarUsuarioDTO;
 import com.gymtrack.backend.dto.UsuarioDTO.CrearUsuarioDTO;
 import com.gymtrack.backend.dto.UsuarioDTO.UsuarioDTO;
@@ -24,6 +25,17 @@ public interface UsuarioMapper {
             ActualizarUsuarioDTO dto,
             @MappingTarget Usuario usuario //mapping target es para decirle a mapStruct que modifique el ya exitente (el que le pasamos por parametro)
     );
+
+    @Mapping(target = "roles", ignore = true) //lo mismo aca
+    @BeanMapping(
+            nullValuePropertyMappingStrategy =
+                    NullValuePropertyMappingStrategy.IGNORE
+    )
+    void updateEntityAdmin(
+            ActualizarUsuarioAdminDTO dto,
+            @MappingTarget Usuario usuario //mapping target es para decirle a mapStruct que modifique el ya exitente (el que le pasamos por parametro)
+    );
+
 
 
     default String mapRolToString(Rol rol){

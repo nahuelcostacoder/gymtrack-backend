@@ -8,6 +8,7 @@ import com.gymtrack.backend.service.EjercicioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -20,24 +21,28 @@ public class EjercicioController {
 
     private final EjercicioService ejercicioService;
 
+    @PreAuthorize("hasAuthority('EJERCICIO_VER')")
     @GetMapping
     public ResponseEntity<List<EjercicioDTO>> listar(){
 
         return ResponseEntity.ok(ejercicioService.listar());
     }
 
+    @PreAuthorize("hasAuthority('EJERCICIO_VER')")
     @GetMapping("/{id}")
     public ResponseEntity<EjercicioDTO> buscarPorId(@PathVariable Long id){
 
         return ResponseEntity.ok(ejercicioService.buscarPorId(id));
     }
 
+    @PreAuthorize("hasAuthority('EJERCICIO_VER')")
     @GetMapping("/grupo-muscular/{nombre}")
     public ResponseEntity<List<EjercicioDTO>> buscarPorGrupoMuscular(@PathVariable String nombre){
 
         return ResponseEntity.ok(ejercicioService.buscarPorGrupoMuscular(nombre));
     }
 
+    @PreAuthorize("hasAuthority('EJERCICIO_GESTIONAR')")
     @PostMapping
     public ResponseEntity<EjercicioDTO> crear(@RequestBody @Valid CrearEjercicioDTO dto){
 
@@ -46,12 +51,14 @@ public class EjercicioController {
         return ResponseEntity.created(URI.create("/api/ejercicios/" + ejercicio.getId())).body(ejercicio);
     }
 
+    @PreAuthorize("hasAuthority('EJERCICIO_GESTIONAR')")
     @PatchMapping("/{id}")
     public ResponseEntity<EjercicioDTO> actualizar(@PathVariable Long id, @RequestBody @Valid ActualizarEjercicioDTO dto){
 
         return ResponseEntity.ok(ejercicioService.actualizar(id, dto));
     }
 
+    @PreAuthorize("hasAuthority('EJERCICIO_GESTIONAR')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id){
 

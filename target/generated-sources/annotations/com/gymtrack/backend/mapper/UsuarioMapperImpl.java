@@ -1,5 +1,6 @@
 package com.gymtrack.backend.mapper;
 
+import com.gymtrack.backend.dto.UsuarioDTO.ActualizarUsuarioAdminDTO;
 import com.gymtrack.backend.dto.UsuarioDTO.ActualizarUsuarioDTO;
 import com.gymtrack.backend.dto.UsuarioDTO.CrearUsuarioDTO;
 import com.gymtrack.backend.dto.UsuarioDTO.UsuarioDTO;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-08-12T21:01:15-0300",
+    date = "2026-08-12T22:33:04-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 25.0.2 (Oracle Corporation)"
 )
 @Component
@@ -78,6 +79,27 @@ public class UsuarioMapperImpl implements UsuarioMapper {
         if ( dto.getFechaNacimiento() != null ) {
             usuario.setFechaNacimiento( dto.getFechaNacimiento() );
         }
+    }
+
+    @Override
+    public void updateEntityAdmin(ActualizarUsuarioAdminDTO dto, Usuario usuario) {
+        if ( dto == null ) {
+            return;
+        }
+
+        if ( dto.getUsername() != null ) {
+            usuario.setUsername( dto.getUsername() );
+        }
+        if ( dto.getNombre() != null ) {
+            usuario.setNombre( dto.getNombre() );
+        }
+        if ( dto.getApellido() != null ) {
+            usuario.setApellido( dto.getApellido() );
+        }
+        if ( dto.getFechaNacimiento() != null ) {
+            usuario.setFechaNacimiento( dto.getFechaNacimiento() );
+        }
+        usuario.setHabilitado( dto.isHabilitado() );
     }
 
     protected Set<String> rolSetToStringSet(Set<Rol> set) {

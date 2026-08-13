@@ -11,7 +11,8 @@ public interface UsuarioService {
     List<UsuarioDTO> listar();
     UsuarioDTO buscarPorId(Long id);
     UsuarioDTO crear(CrearUsuarioDTO dto);
-    UsuarioDTO actualizar(Long id, ActualizarUsuarioDTO dto);
+    UsuarioDTO actualizar(Long id, ActualizarUsuarioAdminDTO dto);
+    UsuarioDTO actualizarMiUsuario(Long id, ActualizarUsuarioDTO dto);
     void cambiarEmail(Long id, CambiarEmailDTO dto);
     void cambiarPassword(Long id, CambiarPasswordDTO dto);
     void eliminar(Long id);

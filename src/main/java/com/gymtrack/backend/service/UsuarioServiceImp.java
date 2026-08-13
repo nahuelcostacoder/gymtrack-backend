@@ -8,6 +8,7 @@ import com.gymtrack.backend.model.Usuario;
 import com.gymtrack.backend.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.mapping.Map;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.rmi.AlreadyBoundException;
@@ -51,8 +52,26 @@ public class UsuarioServiceImp implements UsuarioService{
 
     }
 
+    @PreAuthorize("hasAuthority()")
     @Override
-    public UsuarioDTO actualizar(Long id, ActualizarUsuarioDTO dto) {
+    public UsuarioDTO actualizar(Long id, ActualizarUsuarioAdminDTO dto){
+
+        Usuario usuario = buscarEntidadPorId(id);
+
+        if (dto.getUsername() != null){
+
+            validarNombreUsuarioDisponibleActualizar(dto.getUsername(), usuario);
+        }
+
+        usuarioMapper.updateEntityAdmin(dto, usuario);
+
+        Usuario usuarioActualizado = usuarioRepository.save(usuario);
+
+        return usuarioMapper.toDto(usuarioActualizado);
+    }
+
+    @Override
+    public UsuarioDTO actualizarMiUsuario(Long id, ActualizarUsuarioDTO dto) {
 
         Usuario usuario = buscarEntidadPorId(id);
 

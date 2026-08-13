@@ -1,16 +1,16 @@
 package com.gymtrack.backend.dto.UsuarioDTO;
 
-import jakarta.persistence.Entity;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDate;
 
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor @AllArgsConstructor
 @Getter @Setter
 @Builder
-public class ActualizarUsuarioDTO {
+public class ActualizarUsuarioAdminDTO {
+
 
     @Size(min = 3, max = 30)
     private String username;
@@ -21,9 +21,8 @@ public class ActualizarUsuarioDTO {
     @Size(max = 50)
     private String apellido;
 
-    @Size(max = 500)
-    private String fotoPerfilUrl;
-
     @Past
     private LocalDate fechaNacimiento;
+
+    private boolean habilitado;
 }
