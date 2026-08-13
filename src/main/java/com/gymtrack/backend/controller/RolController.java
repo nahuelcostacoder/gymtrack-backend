@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -20,18 +21,21 @@ public class RolController {
 
     private final RolService rolService;
 
+    @PreAuthorize("hasAuthority('ROL_VER')")
     @GetMapping
     public ResponseEntity<List<RolDTO>> listar(){
 
         return ResponseEntity.ok(rolService.listar());
     }
 
+    @PreAuthorize("hasAuthority('ROL_VER')")
     @GetMapping("/{rolId}")
     public ResponseEntity<RolDTO> buscarPorId(@PathVariable Long rolId){
 
         return ResponseEntity.ok(rolService.buscarPorId(rolId));
     }
 
+    @PreAuthorize("hasAuthority('ROL_GESTIONAR')")
     @PostMapping
     public ResponseEntity<RolDTO> crear(@RequestBody @Valid CrearRolDTO dto){
 
@@ -40,6 +44,7 @@ public class RolController {
         return ResponseEntity.created(URI.create("/api/rol/" + rol.getId())).body(rol);
     }
 
+    @PreAuthorize("hasAuthority('ROL_GESTIONAR')")
     @PatchMapping("/{rolId}")
     public ResponseEntity<RolDTO> actualizar(@PathVariable Long rolId,
                                              @RequestBody @Valid ActualizarRolDTO dto){
@@ -47,6 +52,7 @@ public class RolController {
         return ResponseEntity.ok(rolService.actualizar(rolId, dto));
     }
 
+    @PreAuthorize("hasAuthority('ROL_GESTIONAR')")
     @PatchMapping("/{rolId}/permisos/{permisoId}/agregarPermiso")
     public ResponseEntity<RolDTO> agregarPermiso(@PathVariable Long rolId,
                                                  @PathVariable Long permisoId){
@@ -56,7 +62,7 @@ public class RolController {
         return ResponseEntity.ok(rolService.agregarPermiso(rolId, permisoId));
     }
 
-
+    @PreAuthorize("hasAuthority('ROL_GESTIONAR')")
     @PatchMapping("/{rolId}/permisos/{permisoId}/quitarPermiso")
     public ResponseEntity<RolDTO> quitarPermiso(@PathVariable Long rolId,
                                                 @PathVariable Long permisoId){
@@ -64,8 +70,9 @@ public class RolController {
         return ResponseEntity.ok(rolService.quitarPermiso(rolId, permisoId));
     }
 
+    @PreAuthorize("hasAuthority('ROL_GESTIONAR')")
     @DeleteMapping("/{rolId}")
-    public ResponseEntity<Void> eliminarPermiso(@PathVariable Long rolId){
+    public ResponseEntity<Void> eliminarRol(@PathVariable Long rolId){
 
         rolService.eliminar(rolId);
 
