@@ -16,7 +16,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/usuarios/{usuarioId}/entrenamientos")
+@RequestMapping("/api/entrenamientos")
 public class EntrenamientoController {
 
     private final EntrenamientoService entrenamientoService;
@@ -40,8 +40,7 @@ public class EntrenamientoController {
         EntrenamientoDTO entrenamiento = entrenamientoService.crear(usuarioDetails.getId(), dto);
 
         return ResponseEntity.created(
-                URI.create("/api/usuarios/" + usuarioDetails.getId() + "/entrenamientos/" + entrenamiento.getId())
-        ).body(entrenamiento);
+                URI.create("/api/entrenamientos/" + entrenamiento.getId())).body(entrenamiento);
 
     }
 
