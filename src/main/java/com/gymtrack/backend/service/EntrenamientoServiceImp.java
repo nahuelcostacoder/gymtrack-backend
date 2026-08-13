@@ -116,11 +116,7 @@ public class EntrenamientoServiceImp implements EntrenamientoService{
         return entrenamientoMapper.toDto(entrenamientoRepository.save(entrenamiento));
     }
 
-    private Entrenamiento buscarEntidadEntrenamientoPorId(Long entrenamientoId){
 
-        return entrenamientoRepository.findById(entrenamientoId)
-                .orElseThrow(() -> new NotFoundException("No se ha encontrado un entrenamiento con id " + entrenamientoId));
-    }
 
     private Entrenamiento buscarEntidadEntrenamientoPorIdyUsuarioId(Long entrenamientoId, Long usuarioId){
 
