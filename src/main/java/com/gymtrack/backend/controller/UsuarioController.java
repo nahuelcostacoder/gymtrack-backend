@@ -85,6 +85,27 @@ public class UsuarioController {
     }
 
     @PreAuthorize("hasAuthority('USUARIO_GESTIONAR')")
+    @PatchMapping("{usuarioId}/roles/{rolId}/agregar")
+    public ResponseEntity<UsuarioDTO> agregarRol(@PathVariable Long id,
+                                                 @PathVariable Long rolId){
+
+        return ResponseEntity.ok(usuarioService.
+                agregarRol(id, rolId));
+    }
+
+
+    @PreAuthorize("hasAuthority('USUARIO_GESTIONAR')")
+    @PatchMapping("{usuarioId}/roles/{rolId}/quitar")
+    public ResponseEntity<UsuarioDTO> quitarRol(@PathVariable Long id,
+                                                 @PathVariable Long rolId){
+
+        return ResponseEntity.ok(usuarioService.
+                quitarRol(id, rolId));
+    }
+
+
+
+    @PreAuthorize("hasAuthority('USUARIO_GESTIONAR')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id){
 

@@ -2,9 +2,12 @@ package com.gymtrack.backend.service;
 
 import com.gymtrack.backend.dto.UsuarioDTO.*;
 import com.gymtrack.backend.exception.AlreadyExistsException;
+import com.gymtrack.backend.exception.EstadoInvalidoException;
 import com.gymtrack.backend.exception.NotFoundException;
 import com.gymtrack.backend.mapper.UsuarioMapper;
+import com.gymtrack.backend.model.Rol;
 import com.gymtrack.backend.model.Usuario;
+import com.gymtrack.backend.repository.RolRepository;
 import com.gymtrack.backend.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.mapping.Map;
@@ -20,6 +23,7 @@ import java.util.List;
 public class UsuarioServiceImp implements UsuarioService{
 
     private final UsuarioRepository usuarioRepository;
+    private final RolRepository rolRepository;
     private final UsuarioMapper usuarioMapper;
 
 
@@ -121,11 +125,56 @@ public class UsuarioServiceImp implements UsuarioService{
     }
 
     @Override
+    public UsuarioDTO agregarRol(Long id, Long rolId){
+
+        Usuario usuario = buscarEntidadPorId(id);
+
+        Rol rol = buscarEntidadRolPorId(rolId);
+
+        boolean yaAsignado = usuario.getRoles()
+                .stream()
+                .anyMatch(r -> r.getId().equals(rolId));
+
+        //anymatch busca algun rol que cumpla esa condicion
+
+        if (yaAsignado){
+
+            throw new AlreadyExistsException("El usuario ya tiene asignado ese rol");
+        }
+
+        usuario.getRoles().add(rol);
+
+        return usuarioMapper.toDto(usuarioRepository.save(usuario));
+    }
+
+    @Override
+    public UsuarioDTO quitarRol(Long id, Long rolId){
+
+        Usuario usuario = buscarEntidadPorId(id);
+
+        Rol rol = buscarEntidadRolPorId(rolId);
+
+
+        //remove if ademas de eliminar si encuentra, devuelve un booleano confirmandolo
+        boolean eliminado = usuario.getRoles()
+                .removeIf(r -> r.getId().equals(rolId));
+
+
+        if (!eliminado)
+
+            throw new NotFoundException("No se encuentro un rol con ese nombre para ese usuario");
+
+        return usuarioMapper.toDto(usuarioRepository.save(usuario));
+
+    }
+
+    @Override
     public void eliminar(Long id) {
 
         usuarioRepository.delete(buscarEntidadPorId(id));
 
     }
+
 
     private Usuario buscarEntidadPorId(Long id){
 
@@ -149,6 +198,13 @@ public class UsuarioServiceImp implements UsuarioService{
         }
 
         if (usuarioRepository.existsByUsername(nuevoNombre));
+    }
+
+    private Rol buscarEntidadRolPorId(Long rolId){
+
+        return rolRepository.findById(rolId).orElseThrow(() ->
+                new NotFoundException("No se ha encontrado un rol con ese id" + rolId));
+
     }
 
 }

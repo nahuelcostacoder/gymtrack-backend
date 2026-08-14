@@ -15,6 +15,8 @@ public interface UsuarioService {
     UsuarioDTO actualizarMiUsuario(Long id, ActualizarUsuarioDTO dto);
     void cambiarEmail(Long id, CambiarEmailDTO dto);
     void cambiarPassword(Long id, CambiarPasswordDTO dto);
+    UsuarioDTO agregarRol(Long id, Long rolId);
+    UsuarioDTO quitarRol(Long id, Long rolId);
     void eliminar(Long id);
 
 }
