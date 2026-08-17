@@ -2,6 +2,7 @@ package com.gymtrack.backend.service;
 
 import com.gymtrack.backend.dto.AmistadDTO.AmistadDTO;
 import com.gymtrack.backend.dto.AmistadDTO.EnviarSolicitudDTO;
+import com.gymtrack.backend.exception.AccesoDenegadoException;
 import com.gymtrack.backend.exception.EstadoInvalidoException;
 import com.gymtrack.backend.exception.NotFoundException;
 import com.gymtrack.backend.mapper.AmistadMapper;
@@ -61,23 +62,27 @@ public class AmistadServiceImp implements AmistadService{
     }
 
     @Override
-    public AmistadDTO aceptarSolicitud(Long amistadId) {
+    public AmistadDTO aceptarSolicitud(Long usuarioId, Long amistadId) {
 
         Amistad amistad = buscarEntidadPorId(amistadId);
 
-        //aca luego con JWT deberia obtener el usuario autenticado y verificar si es el quien acepta la solicitud
+        if (!amistad.getReceptorSolicitud().getId().equals(usuarioId))
+
+            throw new AccesoDenegadoException("Ese usuario no es el receptor de la solicitud");
 
         amistad.setEstado(EstadoAmistad.ACEPTADA);
 
-        return amistadMapper.toDto(amistad);
+        return amistadMapper.toDto(amistadRepository.save(amistad));
     }
 
     @Override
-    public void rechazarSolicitud(Long amistadId) {
+    public void rechazarSolicitud(Long usuarioId, Long amistadId) {
 
         Amistad amistad = buscarEntidadPorId(amistadId);
 
-        //aca luego con JWT deberia obtener el usuario autenticado y verificar si es el quien rechaza la solicitud"
+        if (!amistad.getReceptorSolicitud().getId().equals(usuarioId))
+
+            throw new AccesoDenegadoException("No podés rechazar una solicitud de amistad que no fue enviada a tu usuario");
 
         if (amistad.getEstado() != EstadoAmistad.PENDIENTE)
 
@@ -90,9 +95,20 @@ public class AmistadServiceImp implements AmistadService{
     }
 
     @Override
-    public void eliminarAmistad(Long amistadId) {
+    public void eliminarAmistad(Long usuarioId, Long amistadId) {
 
         Amistad amistad = buscarEntidadPorId(amistadId);
+
+        //aca como puede ser tanto emisor como receptor quien la elimine, debemos verificar ambos
+        boolean esEmisor = amistad.getEmisorSolicitud().getId().equals(usuarioId);
+
+        boolean esReceptor = amistad.getReceptorSolicitud().getId().equals(usuarioId);
+
+        if (!esEmisor && !esReceptor){
+
+            throw new AccesoDenegadoException("No podes eliminar una amistad de la que no formás parte");
+        }
+
 
         if (amistad.getEstado() != EstadoAmistad.ACEPTADA)
 
@@ -102,11 +118,14 @@ public class AmistadServiceImp implements AmistadService{
     }
 
     @Override
-    public void cancelarSolicitud(Long amistadId) {
+    public void cancelarSolicitud(Long usuarioId, Long amistadId) {
 
         Amistad amistad = buscarEntidadPorId(amistadId);
 
-        //aca tmb verificar usuario
+        if (!amistad.getEmisorSolicitud().getId().equals(usuarioId)){
+
+            throw new AccesoDenegadoException("No podés cancelar una solicitud de amistad que no enviaste");
+        }
 
         if (amistad.getEstado() != EstadoAmistad.PENDIENTE)
 

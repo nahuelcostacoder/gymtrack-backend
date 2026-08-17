@@ -13,8 +13,9 @@ public interface AmistadService {
     List<AmistadDTO> listarSolicitudesRecibidas(Long usuarioId);
     List<AmistadDTO> listarSolicitudesEnviadas(Long usuarioId);
     AmistadDTO enviarAmistad(Long emisorId, EnviarSolicitudDTO dto);
-    AmistadDTO aceptarSolicitud(Long amistadId);
-    void rechazarSolicitud(Long amistadId);
-    void cancelarSolicitud(Long amistadId);
-    void eliminarAmistad(Long amistadId);
+    AmistadDTO aceptarSolicitud(Long usuarioId, Long amistadId);
+    void rechazarSolicitud(Long usuarioId, Long amistadId);
+    void eliminarAmistad(Long usuarioId, Long amistadId);
+    void cancelarSolicitud(Long usuarioId, Long amistadId);
+
 }

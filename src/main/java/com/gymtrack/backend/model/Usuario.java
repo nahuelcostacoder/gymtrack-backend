@@ -45,8 +45,9 @@ public class Usuario extends EntidadAuditable{
     @Column(nullable = false)
     private LocalDate fechaNacimiento;
 
+    @Builder.Default
     @Column(nullable = false)
-    private boolean habilitado;
+    private boolean habilitado = true;
 
     @ManyToMany
     @JoinTable(

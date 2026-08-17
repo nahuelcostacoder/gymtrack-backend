@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="03fc6b9a-0fc6-405f-9693-f50a24c7e21d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/UsuarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/UsuarioServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/UsuarioServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/AmistadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/AmistadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/AmistadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/AmistadService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/AmistadServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/AmistadServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/controller/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/controller/UsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/UsuarioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/UsuarioService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/UsuarioServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/UsuarioServiceImp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/UsuarioMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/UsuarioMapperImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,18 +29,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "nahuelcostacoder"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;nahuelcostacoder&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:nahuelcostacoder/gymtrack-backend.git",
-    "accountId": "c97d4019-12d4-4b74-9462-8d00d703d655"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:nahuelcostacoder/gymtrack-backend.git&quot;,
+    &quot;accountId&quot;: &quot;c97d4019-12d4-4b74-9462-8d00d703d655&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -100,5 +104,16 @@
       <updated>1786579124292</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
