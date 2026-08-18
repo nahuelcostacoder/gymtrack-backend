@@ -4,6 +4,8 @@ import com.gymtrack.backend.dto.EntrenamientoDTO.EntrenamientoDTO;
 import com.gymtrack.backend.dto.UsuarioDTO.UsuarioResumenDTO;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
@@ -26,4 +28,7 @@ public class PublicacionDTO {
     private Integer cantidadComentarios;
 
     private boolean dioLike; //si el usuario le dio like, el corazon cambiaria a rojo
+
+    private LocalDateTime fechaCreacion;
+
 }
