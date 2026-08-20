@@ -58,6 +58,15 @@ public class AmistadServiceImp implements AmistadService{
                 .fechaSolicitud(LocalDateTime.now())
                 .build();
 
+        if (amistadRepository.existsByEmisorSolicitudIdAndReceptorSolicitudId(
+                emisorId,
+                dto.getReceptorId())) {
+
+            throw new EstadoInvalidoException(
+                    "Ya existe una solicitud de amistad entre estos usuarios"
+            );
+        }
+
         return amistadMapper.toDto(amistadRepository.save(amistad));
     }
 

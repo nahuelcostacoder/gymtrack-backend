@@ -19,7 +19,7 @@ public class AmistadDTO {
 
     private LocalDateTime fechaSolicitud;
 
-    private UsuarioResumenDTO emisor;
+    private UsuarioResumenDTO emisorSolicitud;
 
-    private UsuarioResumenDTO receptor;
+    private UsuarioResumenDTO receptorSolicitud;
 }

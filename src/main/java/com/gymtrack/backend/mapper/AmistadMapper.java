@@ -13,5 +13,7 @@ import org.mapstruct.Mapping;
 )
 public interface AmistadMapper {
 
+    @Mapping(source = "emisorSolicitud", target = "emisorSolicitud")
+    @Mapping(source = "receptorSolicitud", target = "receptorSolicitud")
     AmistadDTO toDto(Amistad amistad); //asi sabe como mapear de usuario a usuario resumen
 }

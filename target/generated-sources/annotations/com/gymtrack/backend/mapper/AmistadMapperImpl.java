@@ -3,15 +3,19 @@ package com.gymtrack.backend.mapper;
 import com.gymtrack.backend.dto.AmistadDTO.AmistadDTO;
 import com.gymtrack.backend.model.Amistad;
 import javax.annotation.processing.Generated;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-08-12T21:01:15-0300",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 25.0.2 (Oracle Corporation)"
+    date = "2026-08-19T22:06:19-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 25.0.4 (Microsoft)"
 )
 @Component
 public class AmistadMapperImpl implements AmistadMapper {
+
+    @Autowired
+    private UsuarioResumenMapper usuarioResumenMapper;
 
     @Override
     public AmistadDTO toDto(Amistad amistad) {
@@ -21,6 +25,8 @@ public class AmistadMapperImpl implements AmistadMapper {
 
         AmistadDTO.AmistadDTOBuilder amistadDTO = AmistadDTO.builder();
 
+        amistadDTO.emisorSolicitud( usuarioResumenMapper.toDto( amistad.getEmisorSolicitud() ) );
+        amistadDTO.receptorSolicitud( usuarioResumenMapper.toDto( amistad.getReceptorSolicitud() ) );
         amistadDTO.id( amistad.getId() );
         amistadDTO.estado( amistad.getEstado() );
         amistadDTO.fechaSolicitud( amistad.getFechaSolicitud() );

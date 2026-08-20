@@ -33,4 +33,7 @@ public interface AmistadRepository extends JpaRepository<Amistad, Long> {
             WHERE a.emisorSolicitud.id = :usuarioId and a.estado = PENDIENTE
             """)
     List<Amistad> listarSolicitudesEnviadas(Long usuarioId);
+
+    boolean existsByEmisorSolicitudIdAndReceptorSolicitudId(Long emisorId,
+            Long receptorId);
 }
