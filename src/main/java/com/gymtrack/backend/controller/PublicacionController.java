@@ -1,0 +1,92 @@
+package com.gymtrack.backend.controller;
+
+import com.gymtrack.backend.dto.PublicacionDTO.ActualizarPublicacionDTO;
+import com.gymtrack.backend.dto.PublicacionDTO.CrearPublicacionDTO;
+import com.gymtrack.backend.dto.PublicacionDTO.PublicacionDTO;
+import com.gymtrack.backend.security.UsuarioDetails;
+import com.gymtrack.backend.service.PublicacionService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.data.autoconfigure.web.DataWebProperties;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.parameters.P;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.util.List;
+
+@RequiredArgsConstructor
+@RestController
+@RequestMapping("api/publicaciones")
+public class PublicacionController {
+
+    private final PublicacionService publicacionService;
+
+
+    //una pagina tiene 10 publicaciones
+    @GetMapping("/usuarios/{usuarioId}")
+    public ResponseEntity<Page<PublicacionDTO>> listarPorUsuario(@PathVariable Long usuarioId,
+                                                                 @PageableDefault(
+                                                                         size = 10,
+                                                                         sort = "fechaCreacion",
+                                                                         direction = Sort.Direction.DESC
+                                                                 ) //aca lo que hago es dar un defecto de cuantas cargar, sino puede cambiarlo el front por el endpoint
+
+                                                                 Pageable pageable){
+
+        return ResponseEntity.ok(publicacionService.listarPorUsuario(usuarioId, pageable));
+
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<PublicacionDTO>> listarFeed(@PageableDefault(
+                                                                   size = 10,
+                                                                   sort = "fechaCreacion",
+                                                                   direction = Sort.Direction.DESC
+                                                           )Pageable pageable){
+
+
+        return ResponseEntity.ok(publicacionService.listarFeed(pageable));
+
+    }
+
+    @GetMapping("/{publicacionId}")
+    public ResponseEntity<PublicacionDTO> buscarPorId(@PathVariable Long publicacionId){
+
+        return ResponseEntity.ok(publicacionService.buscarPorId(publicacionId));
+    }
+
+    @PostMapping()
+    public ResponseEntity<PublicacionDTO> crear(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
+                                                @RequestBody @Valid CrearPublicacionDTO dto){
+
+        PublicacionDTO publicacion = publicacionService.crear(usuarioDetails.getId(), dto);
+
+        return ResponseEntity.created(URI.create("/api/publicaciones/" + publicacion.getId())).body(publicacion);
+
+    }
+
+    @PatchMapping("/{publicacionId}")
+    public ResponseEntity<PublicacionDTO> actualizar(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
+                                                      @PathVariable Long publicacionId,
+                                                      @RequestBody @Valid ActualizarPublicacionDTO dto){
+
+        return ResponseEntity.ok(publicacionService.actualizar(usuarioDetails.getId(), publicacionId, dto));
+    }
+
+    @DeleteMapping("/{publicacionId}")
+    public ResponseEntity<Void> eliminar(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
+                                         @PathVariable Long publicacionId){
+
+        publicacionService.eliminar(usuarioDetails.getId(), publicacionId);
+
+        return ResponseEntity.noContent().build();
+    }
+
+
+}

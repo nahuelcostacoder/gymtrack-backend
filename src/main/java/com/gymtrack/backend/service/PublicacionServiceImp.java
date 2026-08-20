@@ -27,14 +27,6 @@ public class PublicacionServiceImp implements PublicacionService{
     private PublicacionMapper publicacionMapper;
 
     @Override
-    public List<PublicacionDTO> listarPublicacionesUsuario(Long usuarioId) {
-
-        return publicacionRepository.findByEntrenamientoUsuarioId(usuarioId)
-                .stream().map(publicacionMapper::toDTO).toList();
-    }
-
-
-    @Override
     public Page<PublicacionDTO> listarFeed(Pageable pageable){
 
         return publicacionRepository.findAllByOrderByFechaCreacionDesc(pageable).map(publicacionMapper::toDTO);

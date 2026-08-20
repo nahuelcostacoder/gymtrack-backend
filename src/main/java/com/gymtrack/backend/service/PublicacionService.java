@@ -11,7 +11,6 @@ import java.util.List;
 
 public interface PublicacionService {
 
-    List<PublicacionDTO> listarPublicacionesUsuario(Long usuarioId);
     Page<PublicacionDTO> listarFeed(Pageable pageable);
     Page<PublicacionDTO > listarPorUsuario(Long usuarioId, Pageable pageable);
     PublicacionDTO buscarPorId(Long publicacionId);

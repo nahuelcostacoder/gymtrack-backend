@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03fc6b9a-0fc6-405f-9693-f50a24c7e21d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/PublicacionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/repository/PublicacionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/repository/PublicacionRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/PublicacionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/PublicacionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/PublicacionServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/PublicacionServiceImp.java" afterDir="false" />
     </list>
@@ -18,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
