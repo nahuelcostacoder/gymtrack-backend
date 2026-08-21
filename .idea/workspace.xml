@@ -5,11 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03fc6b9a-0fc6-405f-9693-f50a24c7e21d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/mapper/MeGustaMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/repository/MeGustaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/MeGustaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/MeGustaServiceImp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/config/DataInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/MeGustaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/dto/MeGustaDTO/MeGustaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/dto/MeGustaDTO/MeGustaDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/mapper/MeGustaMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/mapper/MeGustaMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/repository/MeGustaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/repository/MeGustaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/security/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/security/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/MeGustaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/MeGustaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/MeGustaServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/MeGustaServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/dto/MeGustaDTO/MeGustaDTO$MeGustaDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/dto/MeGustaDTO/MeGustaDTO$MeGustaDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/dto/MeGustaDTO/MeGustaDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/dto/MeGustaDTO/MeGustaDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/mapper/MeGustaMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/mapper/MeGustaMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/mapper/MeGustaMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/mapper/MeGustaMapperImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/repository/MeGustaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/repository/MeGustaRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/security/AuthenticationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/security/AuthenticationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/MeGustaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/MeGustaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/MeGustaServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/MeGustaServiceImp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/MeGustaMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/MeGustaMapperImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +32,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>

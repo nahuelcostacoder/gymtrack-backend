@@ -1,19 +1,21 @@
 package com.gymtrack.backend.mapper;
 
 import com.gymtrack.backend.dto.MeGustaDTO.MeGustaDTO;
-import com.gymtrack.backend.dto.UsuarioDTO.UsuarioResumenDTO;
 import com.gymtrack.backend.model.MeGusta;
-import com.gymtrack.backend.model.Usuario;
 import javax.annotation.processing.Generated;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-08-20T18:36:51-0300",
+    date = "2026-08-21T20:39:45-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 25.0.4 (Microsoft)"
 )
 @Component
 public class MeGustaMapperImpl implements MeGustaMapper {
+
+    @Autowired
+    private UsuarioResumenMapper usuarioResumenMapper;
 
     @Override
     public MeGustaDTO toDTO(MeGusta meGusta) {
@@ -24,7 +26,8 @@ public class MeGustaMapperImpl implements MeGustaMapper {
         MeGustaDTO.MeGustaDTOBuilder meGustaDTO = MeGustaDTO.builder();
 
         meGustaDTO.id( meGusta.getId() );
-        meGustaDTO.usuario( usuarioToUsuarioResumenDTO( meGusta.getUsuario() ) );
+        meGustaDTO.fechaCreacion( meGusta.getFechaCreacion() );
+        meGustaDTO.usuario( usuarioResumenMapper.toDto( meGusta.getUsuario() ) );
 
         return meGustaDTO.build();
     }
@@ -40,20 +43,5 @@ public class MeGustaMapperImpl implements MeGustaMapper {
         meGusta.id( dto.getId() );
 
         return meGusta.build();
-    }
-
-    protected UsuarioResumenDTO usuarioToUsuarioResumenDTO(Usuario usuario) {
-        if ( usuario == null ) {
-            return null;
-        }
-
-        UsuarioResumenDTO.UsuarioResumenDTOBuilder usuarioResumenDTO = UsuarioResumenDTO.builder();
-
-        usuarioResumenDTO.id( usuario.getId() );
-        usuarioResumenDTO.username( usuario.getUsername() );
-        usuarioResumenDTO.nombre( usuario.getNombre() );
-        usuarioResumenDTO.fotoPerfilUrl( usuario.getFotoPerfilUrl() );
-
-        return usuarioResumenDTO.build();
     }
 }

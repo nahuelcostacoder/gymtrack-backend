@@ -7,7 +7,10 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
-@Mapper(componentModel = "spring")
+@Mapper(
+        componentModel = "spring",
+        uses = UsuarioResumenMapper.class
+)
 public interface MeGustaMapper {
 
     MeGustaDTO toDTO(MeGusta meGusta);

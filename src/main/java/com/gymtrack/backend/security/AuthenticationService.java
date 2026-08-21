@@ -4,8 +4,12 @@ import com.gymtrack.backend.dto.AuthDTO.AuthLoginRequestDTO;
 import com.gymtrack.backend.dto.AuthDTO.AuthResponseDTO;
 import com.gymtrack.backend.dto.UsuarioDTO.CrearUsuarioDTO;
 import com.gymtrack.backend.dto.UsuarioDTO.UsuarioDTO;
+import com.gymtrack.backend.exception.AccesoDenegadoException;
+import com.gymtrack.backend.exception.NotFoundException;
 import com.gymtrack.backend.mapper.UsuarioMapper;
+import com.gymtrack.backend.model.Rol;
 import com.gymtrack.backend.model.Usuario;
+import com.gymtrack.backend.repository.RolRepository;
 import com.gymtrack.backend.repository.UsuarioRepository;
 import com.gymtrack.backend.utils.JwtUtils;
 import jakarta.validation.Valid;
@@ -26,6 +30,7 @@ public class AuthenticationService {
     private final UsuarioMapper usuarioMapper;
     private final PasswordEncoder passwordEncoder;
     private final UsuarioRepository usuarioRepository;
+    private final RolRepository rolRepository;
 
     //recibo del controller
     public AuthResponseDTO loguearUsuario(@Valid AuthLoginRequestDTO authLoginRequestDTO){
@@ -52,11 +57,17 @@ public class AuthenticationService {
 
     public UsuarioDTO registrar(CrearUsuarioDTO dto){
 
+        if (usuarioRepository.existsByUsername(dto.getUsername()))
+            throw new AccesoDenegadoException("Ya existe un usuario con ese nombre de usuario");
+
         Usuario usuario = usuarioMapper.toEntity(dto);
 
         usuario.setPassword(passwordEncoder.encode(dto.getPassword()));
 
-        //agregar rol base!!!
+        Rol rolUsuario = rolRepository.findByNombre("USUARIO")
+                .orElseThrow(() -> new NotFoundException("No existe un rol con ese nombre"));
+
+        usuario.getRoles().add(rolUsuario);
 
         return usuarioMapper.toDto(usuarioRepository.save(usuario));
     }
