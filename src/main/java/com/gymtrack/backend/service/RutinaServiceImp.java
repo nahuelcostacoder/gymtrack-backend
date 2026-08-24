@@ -26,9 +26,19 @@ public class RutinaServiceImp implements RutinaService {
     private final RutinaMapper rutinaMapper;
 
     @Override
-    public List<RutinaDTO> listar() {
-        return rutinaRepository.findAll().
-                stream().map(rutinaMapper::toDTO)
+    public List<RutinaDTO> listarMias(Long usuarioId) {
+        return rutinaRepository
+                .findByUsuarioId(usuarioId)
+                .stream().map(rutinaMapper::toDTO)
+                .toList();
+    }
+
+    @Override
+    public List<RutinaDTO> listarPublicasPorUsuario(Long usuarioId){
+
+        return rutinaRepository.findByUsuarioIdAndPublicaTrue(usuarioId)
+                .stream()
+                .map(rutinaMapper::toDTO)
                 .toList();
     }
 

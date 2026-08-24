@@ -5,24 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03fc6b9a-0fc6-405f-9693-f50a24c7e21d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/config/DataInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/MeGustaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/dto/MeGustaDTO/MeGustaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/dto/MeGustaDTO/MeGustaDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/mapper/MeGustaMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/mapper/MeGustaMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/repository/MeGustaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/repository/MeGustaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/security/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/security/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/MeGustaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/MeGustaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/MeGustaServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/MeGustaServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/dto/MeGustaDTO/MeGustaDTO$MeGustaDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/dto/MeGustaDTO/MeGustaDTO$MeGustaDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/dto/MeGustaDTO/MeGustaDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/dto/MeGustaDTO/MeGustaDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/mapper/MeGustaMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/mapper/MeGustaMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/mapper/MeGustaMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/mapper/MeGustaMapperImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/repository/MeGustaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/repository/MeGustaRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/security/AuthenticationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/security/AuthenticationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/MeGustaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/MeGustaService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/MeGustaServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/MeGustaServiceImp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/RutinaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/RutinaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/repository/RutinaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/repository/RutinaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/RutinaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/RutinaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/RutinaServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/RutinaServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/AmistadMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/AmistadMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/EjercicioMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/EjercicioMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/EntrenamientoEjercicioMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/EntrenamientoEjercicioMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/EntrenamientoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/EntrenamientoMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/GrupoMuscularMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/GrupoMuscularMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/HistorialEjercicioMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/HistorialEjercicioMapperImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/MeGustaMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/MeGustaMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/PerfilMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/PerfilMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/PermisoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/PermisoMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/PublicacionMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/PublicacionMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/RolMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/RolMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/RutinaEjercicioMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/RutinaEjercicioMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/RutinaMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/RutinaMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/SerieEjercicioMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/SerieEjercicioMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/UsuarioMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/UsuarioMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/UsuarioResumenMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/UsuarioResumenMapperImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,21 +72,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.GymtrackBackendApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.GymtrackBackendApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.GymtrackBackendApplication.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.GymtrackBackendApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Admin/gymtrack-backend",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.10695189",
+    "project.structure.side.proportion": "0.1199041",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="GymtrackBackendApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <envs>
@@ -102,7 +111,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+        <option value="bundled-jdk-30f59d01ecdd-34e2839f716b-intellij.indexing.shared.core-IU-262.9437.185" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.9437.185" />
       </set>
     </attachedChunks>
   </component>
@@ -116,6 +126,9 @@
     </task>
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -126,5 +139,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

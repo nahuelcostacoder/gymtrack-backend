@@ -4,11 +4,14 @@ import com.gymtrack.backend.model.Rutina;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface RutinaRepository extends JpaRepository<Rutina, Long> {
 
+    List<Rutina> findByUsuarioId(Long usuarioId);
+    List<Rutina> findByUsuarioIdAndPublicaTrue(Long usuarioId);
     boolean existsByNombre(String nombre);
     long countByUsuarioId(Long usuarioId);
     boolean existsByNombreAndUsuarioIdAndIdNot(String nombre, Long usuarioId, Long id);

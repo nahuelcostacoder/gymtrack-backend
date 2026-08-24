@@ -10,7 +10,8 @@ import java.util.List;
 @Service
 public interface RutinaService {
 
-    List<RutinaDTO> listar();
+    List<RutinaDTO> listarMias(Long usuarioId);
+    List<RutinaDTO> listarPublicasPorUsuario(Long usuarioId);
     RutinaDTO buscarPorId(Long id);
     RutinaDTO crear(Long usuarioId, CrearRutinaDTO dto);
     RutinaDTO actualizar(Long usuarioId, Long id, ActualizarRutinaDTO dto);

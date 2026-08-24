@@ -23,10 +23,17 @@ public class RutinaController {
 
     private final RutinaService rutinaService;
 
-    @GetMapping
-    public ResponseEntity<List<RutinaDTO>> listar(){
+    @GetMapping("/mias")
+    public ResponseEntity<List<RutinaDTO>> listarMias(@AuthenticationPrincipal UsuarioDetails usuarioDetails){
 
-        return ResponseEntity.ok(rutinaService.listar());
+        return ResponseEntity.ok(rutinaService.listarMias(usuarioDetails.getId()));
+    }
+
+    @GetMapping("/usuarios/{usuarioId}")
+    public ResponseEntity<List<RutinaDTO>> listarPublicasPorUsuario(@PathVariable Long usuarioId){
+
+
+        return ResponseEntity.ok(rutinaService.listarPublicasPorUsuario(usuarioId));
     }
 
     @GetMapping("/{id}")
