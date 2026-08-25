@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03fc6b9a-0fc6-405f-9693-f50a24c7e21d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/mapper/ComentarioMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/repository/ComentarioRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/ComentarioService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/ComentarioServiceImp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/ComentarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/ComentarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/ComentarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/ComentarioServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/ComentarioServiceImp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -122,17 +121,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/ComentarioServiceImp.java</url>
-          <line>75</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

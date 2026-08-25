@@ -13,20 +13,21 @@ import com.gymtrack.backend.repository.ComentarioRepository;
 import com.gymtrack.backend.repository.PublicacionRepository;
 import com.gymtrack.backend.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 
 @RequiredArgsConstructor
 @Service
 public class ComentarioServiceImp implements ComentarioService{
 
-    private ComentarioRepository comentarioRepository;
-    private UsuarioRepository usuarioRepository;
-    private PublicacionRepository publicacionRepository;
-    private ComentarioMapper comentarioMapper;
+    private final ComentarioRepository comentarioRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final PublicacionRepository publicacionRepository;
+    private final ComentarioMapper comentarioMapper;
 
     @Override
     public Page<ComentarioDTO> listarPorUsuario(Long usuarioId, Pageable pageable) {
@@ -47,7 +48,7 @@ public class ComentarioServiceImp implements ComentarioService{
 
 
     @Override
-    public ComentarioDTO crearComentario(Long usuarioId, Long publicacionId, CrearComentarioDTO dto) {
+    public ComentarioDTO crear(Long usuarioId, Long publicacionId, CrearComentarioDTO dto) {
 
         Usuario usuario = buscarEntidadUsuarioPorId(usuarioId);
 
@@ -63,7 +64,7 @@ public class ComentarioServiceImp implements ComentarioService{
     }
 
     @Override
-    public ComentarioDTO editarComentario(Long comentarioId, Long usuarioId, EditarComentarioDTO dto) {
+    public ComentarioDTO editar(Long comentarioId, Long usuarioId, EditarComentarioDTO dto) {
 
         Comentario comentario = buscarEntidadComentarioPorId(comentarioId);
 
@@ -77,7 +78,7 @@ public class ComentarioServiceImp implements ComentarioService{
     }
 
     @Override
-    public void eliminarComentario(Long comentarioId, Long usuarioId) {
+    public void eliminar(Long comentarioId, Long usuarioId) {
 
         Comentario comentario = buscarEntidadComentarioPorId(comentarioId);
 
