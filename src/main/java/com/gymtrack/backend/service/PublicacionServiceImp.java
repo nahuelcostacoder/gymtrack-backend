@@ -27,11 +27,11 @@ import java.util.stream.Collectors;
 @Service
 public class PublicacionServiceImp implements PublicacionService{
 
-    private PublicacionRepository publicacionRepository;
-    private EntrenamientoRepository entrenamientoRepository;
-    private MeGustaRepository meGustaRepository;
-    private ComentarioRepository comentarioRepository;
-    private PublicacionMapper publicacionMapper;
+    private final PublicacionRepository publicacionRepository;
+    private final EntrenamientoRepository entrenamientoRepository;
+    private final MeGustaRepository meGustaRepository;
+    private final ComentarioRepository comentarioRepository;
+    private final PublicacionMapper publicacionMapper;
 
 
     @Override
@@ -147,7 +147,7 @@ public class PublicacionServiceImp implements PublicacionService{
     private Entrenamiento buscarEntrenamientoPorId(Long usuarioId, Long entrenamientoId){
 
         return entrenamientoRepository
-                .findByIdAndUsuarioId(usuarioId, entrenamientoId)
+                .findByIdAndUsuarioId(entrenamientoId, usuarioId)
                 .orElseThrow(() -> new NotFoundException("No se ha encontrado el entrenamiento o no pertenece al usuario"));
     }
 

@@ -2,6 +2,7 @@ package com.gymtrack.backend.controller;
 
 import com.gymtrack.backend.dto.MeGustaDTO.MeGustaDTO;
 import com.gymtrack.backend.model.MeGusta;
+import com.gymtrack.backend.security.UsuarioDetails;
 import com.gymtrack.backend.service.MeGustaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,12 +21,12 @@ import java.util.List;
 @RequestMapping("/api/meGusta")
 public class MeGustaController {
 
-    private MeGustaService meGustaService;
+    private final MeGustaService meGustaService;
 
     @GetMapping
-    public ResponseEntity<List<MeGustaDTO>> listar(@AuthenticationPrincipal Long usuarioId){
+    public ResponseEntity<List<MeGustaDTO>> listar(@AuthenticationPrincipal UsuarioDetails usuarioDetails){
 
-        return ResponseEntity.ok(meGustaService.listarPorUsuario(usuarioId));
+        return ResponseEntity.ok(meGustaService.listarPorUsuario(usuarioDetails.getId()));
     }
 
     public ResponseEntity<Page<MeGustaDTO>> listarPorPublicacion(@PathVariable Long publicacionId,
@@ -41,29 +42,29 @@ public class MeGustaController {
     }
 
     @PostMapping("/publicaciones/{publicacionId}")
-    public ResponseEntity<MeGustaDTO> darMeGusta(@AuthenticationPrincipal Long usuarioId,
+    public ResponseEntity<MeGustaDTO> darMeGusta(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
                                                  @PathVariable Long publicacionId){
 
-        MeGustaDTO meGusta = meGustaService.darMeGusta(usuarioId, publicacionId);
+        MeGustaDTO meGusta = meGustaService.darMeGusta(usuarioDetails.getId(), publicacionId);
 
         return ResponseEntity.created(URI.create("/api/meGusta/" + meGusta.getId())).body(meGusta);
 
     }
 
     @DeleteMapping("/publicaciones/{publicacionId}")
-    public ResponseEntity<Void> eliminarMeGusta(@AuthenticationPrincipal Long usuarioId,
+    public ResponseEntity<Void> eliminarMeGusta(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
                                                 @PathVariable Long publicacionId){
 
-        meGustaService.eliminarMeGusta(usuarioId, publicacionId);
+        meGustaService.eliminarMeGusta(usuarioDetails.getId(), publicacionId);
 
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/publicaciones/{publicacionId}/me-gusta")
-    public ResponseEntity<Boolean> dioMeGusta(@AuthenticationPrincipal Long usuarioId,
+    public ResponseEntity<Boolean> dioMeGusta(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
                                               @PathVariable Long publicacionId){
 
-        return ResponseEntity.ok(meGustaService.dioMeGusta(usuarioId, publicacionId));
+        return ResponseEntity.ok(meGustaService.dioMeGusta(usuarioDetails.getId(), publicacionId));
     }
 
     @GetMapping("/publicaciones/{publicacionId}/total-me-gusta")

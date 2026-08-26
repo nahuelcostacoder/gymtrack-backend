@@ -21,10 +21,10 @@ import java.util.List;
 @Service
 public class MeGustaServiceImp implements MeGustaService{
 
-    private MeGustaRepository meGustaRepository;
-    private UsuarioRepository usuarioRepository;
-    private PublicacionRepository publicacionRepository;
-    private MeGustaMapper meGustaMapper;
+    private final MeGustaRepository meGustaRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final PublicacionRepository publicacionRepository;
+    private final MeGustaMapper meGustaMapper;
 
 
     @Override
