@@ -31,6 +31,7 @@ public class PublicacionController {
     //una pagina tiene 10 publicaciones
     @GetMapping("/usuarios/{usuarioId}")
     public ResponseEntity<Page<PublicacionDTO>> listarPorUsuario(@PathVariable Long usuarioId,
+                                                                 @AuthenticationPrincipal UsuarioDetails usuarioDetails,
                                                                  @PageableDefault(
                                                                          size = 10,
                                                                          sort = "fechaCreacion",
@@ -39,26 +40,28 @@ public class PublicacionController {
 
                                                                  Pageable pageable){
 
-        return ResponseEntity.ok(publicacionService.listarPorUsuario(usuarioId, pageable));
+        return ResponseEntity.ok(publicacionService.listarPorUsuario(usuarioId, usuarioDetails.getId(), pageable));
 
     }
 
     @GetMapping
-    public ResponseEntity<Page<PublicacionDTO>> listarFeed(@PageableDefault(
+    public ResponseEntity<Page<PublicacionDTO>> listarFeed(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
+                                                           @PageableDefault(
                                                                    size = 10,
                                                                    sort = "fechaCreacion",
                                                                    direction = Sort.Direction.DESC
                                                            )Pageable pageable){
 
 
-        return ResponseEntity.ok(publicacionService.listarFeed(pageable));
+        return ResponseEntity.ok(publicacionService.listarFeed(usuarioDetails.getId(), pageable));
 
     }
 
     @GetMapping("/{publicacionId}")
-    public ResponseEntity<PublicacionDTO> buscarPorId(@PathVariable Long publicacionId){
+    public ResponseEntity<PublicacionDTO> buscarPorId(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
+                                                      @PathVariable Long publicacionId){
 
-        return ResponseEntity.ok(publicacionService.buscarPorId(publicacionId));
+        return ResponseEntity.ok(publicacionService.buscarPorId(usuarioDetails.getId(), publicacionId));
     }
 
     @PostMapping()

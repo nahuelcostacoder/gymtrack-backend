@@ -23,9 +23,9 @@ public class PublicacionDTO {
 
     private UsuarioResumenDTO usuario;
 
-    private Integer cantidadLikes;
+    private Long cantidadLikes;
 
-    private Integer cantidadComentarios;
+    private Long cantidadComentarios;
 
     private boolean dioLike; //si el usuario le dio like, el corazon cambiaria a rojo
 

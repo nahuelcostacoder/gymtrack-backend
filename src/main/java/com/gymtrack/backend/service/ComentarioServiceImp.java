@@ -3,6 +3,7 @@ package com.gymtrack.backend.service;
 import com.gymtrack.backend.dto.ComentarioDTO.ComentarioDTO;
 import com.gymtrack.backend.dto.ComentarioDTO.CrearComentarioDTO;
 import com.gymtrack.backend.dto.ComentarioDTO.EditarComentarioDTO;
+import com.gymtrack.backend.dto.PublicacionDTO.PublicacionDTO;
 import com.gymtrack.backend.exception.AccesoDenegadoException;
 import com.gymtrack.backend.exception.NotFoundException;
 import com.gymtrack.backend.mapper.ComentarioMapper;
@@ -90,6 +91,12 @@ public class ComentarioServiceImp implements ComentarioService{
 
     }
 
+    @Override
+    public long contarPorPublicacion(Long publicacionId){
+
+        return comentarioRepository.countByPublicacionId(publicacionId);
+    }
+
     private Comentario buscarEntidadComentarioPorId(Long comentarioId){
 
         return comentarioRepository
@@ -111,4 +118,6 @@ public class ComentarioServiceImp implements ComentarioService{
                 .findById(publicacionId)
                 .orElseThrow(() -> new NotFoundException("No se ha encontrado una publicacion con id " + publicacionId));
     }
+
+
 }

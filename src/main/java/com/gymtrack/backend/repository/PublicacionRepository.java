@@ -15,5 +15,4 @@ public interface PublicacionRepository extends JpaRepository<Publicacion, Long> 
     boolean existsByEntrenamientoId(Long entrenamientoId);
     Page<Publicacion> findAllByOrderByFechaCreacionDesc(Pageable pageable);
     Page<Publicacion> findByEntrenamientoUsuarioId(Long usuarioId, Pageable pageable);
-
 }

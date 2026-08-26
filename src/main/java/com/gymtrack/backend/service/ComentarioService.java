@@ -16,4 +16,6 @@ public interface ComentarioService {
     ComentarioDTO crear(Long usuarioId, Long publicacionId, CrearComentarioDTO dto);
     ComentarioDTO editar(Long comentarioId, Long usuarioId, EditarComentarioDTO dto);
     void eliminar(Long comentarioId, Long usuarioId);
+    long contarPorPublicacion(Long publicacionId);
+
 }

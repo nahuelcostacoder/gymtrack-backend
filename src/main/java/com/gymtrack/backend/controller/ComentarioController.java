@@ -75,4 +75,10 @@ public class ComentarioController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/publicaciones/{publicacionId}/total-comentarios")
+    public ResponseEntity<Long> contarPorPublicacion(@PathVariable Long publicacionId){
+
+        return ResponseEntity.ok(comentarioService.contarPorPublicacion(publicacionId));
+    }
 }
