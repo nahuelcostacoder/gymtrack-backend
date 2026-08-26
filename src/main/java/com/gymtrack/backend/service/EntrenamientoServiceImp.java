@@ -50,14 +50,20 @@ public class EntrenamientoServiceImp implements EntrenamientoService{
     @Override
     public EntrenamientoDTO crear(Long usuarioId, CrearEntrenamientoDTO dto) {
 
-        Rutina rutina = buscarRutinaPorIdYUsuarioId(dto.getRutinaId(), usuarioId);
         Usuario usuario = buscarUsuarioPorId(usuarioId);
 
         Entrenamiento entrenamiento = entrenamientoMapper.toEntity(dto);
 
-        entrenamiento.setRutina(rutina);
         entrenamiento.setUsuario(usuario);
         entrenamiento.setFechaInicio(LocalDateTime.now());
+
+        //la rutina es opcional recordemos
+        if (dto.getRutinaId() != null){
+
+            Rutina rutina = buscarRutinaPorIdYUsuarioId(dto.getRutinaId(), usuarioId);
+            entrenamiento.setRutina(rutina);
+        }
+
 
         return entrenamientoMapper.toDto(entrenamientoRepository.save(entrenamiento));
     }
