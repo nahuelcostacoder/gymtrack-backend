@@ -1,5 +1,6 @@
 package com.gymtrack.backend.service;
 
+import com.gymtrack.backend.dto.ImagenDTO.ImagenDTO;
 import com.gymtrack.backend.dto.PublicacionDTO.ActualizarPublicacionDTO;
 import com.gymtrack.backend.dto.PublicacionDTO.CrearPublicacionDTO;
 import com.gymtrack.backend.dto.PublicacionDTO.PublicacionDTO;
@@ -8,16 +9,17 @@ import com.gymtrack.backend.exception.EstadoInvalidoException;
 import com.gymtrack.backend.exception.NotFoundException;
 import com.gymtrack.backend.mapper.PublicacionMapper;
 import com.gymtrack.backend.model.Entrenamiento;
+import com.gymtrack.backend.model.MediaPublicacion;
 import com.gymtrack.backend.model.Publicacion;
-import com.gymtrack.backend.repository.ComentarioRepository;
-import com.gymtrack.backend.repository.EntrenamientoRepository;
-import com.gymtrack.backend.repository.MeGustaRepository;
-import com.gymtrack.backend.repository.PublicacionRepository;
+import com.gymtrack.backend.model.TipoMedia;
+import com.gymtrack.backend.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -31,7 +33,9 @@ public class PublicacionServiceImp implements PublicacionService{
     private final EntrenamientoRepository entrenamientoRepository;
     private final MeGustaRepository meGustaRepository;
     private final ComentarioRepository comentarioRepository;
+    private final MediaPublicacionRepository mediaPublicacionRepository;
     private final PublicacionMapper publicacionMapper;
+    private final CloudinaryImagenServiceImp cloudinaryImagenServiceImp;
 
 
     @Override
@@ -67,7 +71,9 @@ public class PublicacionServiceImp implements PublicacionService{
     }
 
     @Override
-    public PublicacionDTO crear(Long usuarioId, CrearPublicacionDTO dto) {
+    public PublicacionDTO crear(Long usuarioId,
+                                CrearPublicacionDTO dto,
+                                List<MultipartFile> archivos) {
 
         Entrenamiento entrenamiento = buscarEntrenamientoPorId(usuarioId, dto.getEntrenamientoId());
 
@@ -77,10 +83,14 @@ public class PublicacionServiceImp implements PublicacionService{
 
             throw new EstadoInvalidoException("Ese entrenamiento ya fue publicado");
 
-
         Publicacion publicacion = publicacionMapper.toEntity(dto);
 
         publicacion.setEntrenamiento(entrenamiento);
+
+
+        List<MediaPublicacion> media = crearMedia(publicacion, archivos);
+
+        publicacion.setArchivos(media); //agregamos la lista
 
         Publicacion guardada = publicacionRepository.save(publicacion);
 
@@ -119,6 +129,55 @@ public class PublicacionServiceImp implements PublicacionService{
     }
 
     @Override
+    public PublicacionDTO agregarMedia( Long usuarioId, Long publicacionId,
+                                       List<MultipartFile> archivos){
+
+        Publicacion publicacion = buscarEntidadPorId(publicacionId);
+
+        if (!publicacion.getEntrenamiento().getUsuario().getId().equals(usuarioId)){
+
+            throw new AccesoDenegadoException("La publicacion no pertenece al usuario");
+        }
+
+        List<MediaPublicacion> media = crearMedia(publicacion, archivos);
+
+        publicacion.getArchivos().addAll(media);
+
+        return convertirADTO(publicacionRepository.save(publicacion), usuarioId);
+
+    }
+
+    public PublicacionDTO eliminarMedia(Long usuarioId,
+                                        Long publicacionId,
+                                        Long mediaId){
+
+        MediaPublicacion mediaPublicacion = mediaPublicacionRepository
+                .findByIdAndPublicacionId(mediaId, publicacionId)
+                .orElseThrow(() -> new NotFoundException("No se ha encontrado una media con ese id"));
+
+
+        Publicacion publicacion = mediaPublicacion.getPublicacion();
+
+        if (!mediaPublicacion.getPublicacion().getEntrenamiento().getUsuario().getId().equals(usuarioId)){
+
+            throw new AccesoDenegadoException("Esa media no pertenece a ese usuario");
+        }
+
+        if (mediaPublicacion.getPublicId() != null){
+
+            cloudinaryImagenServiceImp.eliminarImagen(mediaPublicacion.getPublicId());
+        }
+
+        publicacion.getArchivos().remove(mediaPublicacion); //por orphan remove, se va a eliminar solo mediaPublicacion como objeto
+
+        return convertirADTO(publicacionRepository.save(publicacion), usuarioId);
+
+
+
+    }
+
+
+    @Override
     public void eliminar(Long usuarioId, Long publicacionId) {
 
         Publicacion publicacion = buscarEntidadPorId(publicacionId);
@@ -132,6 +191,19 @@ public class PublicacionServiceImp implements PublicacionService{
 
             throw new AccesoDenegadoException("No podés eliminar una publicación que no te pertenece");
         }
+
+        //lo que sucede es que si bien de la bd la media se eliminaria autoticamente por
+        //orphan remove, cloudinary no lo sabe
+
+        for (MediaPublicacion media : publicacion.getArchivos()){
+
+            if (media.getPublicId() != null){
+
+                cloudinaryImagenServiceImp.eliminarImagen(media.getPublicId());
+            }
+        }
+
+        //ahora si
 
         publicacionRepository.delete(publicacion);
     }
@@ -149,6 +221,71 @@ public class PublicacionServiceImp implements PublicacionService{
         return entrenamientoRepository
                 .findByIdAndUsuarioId(entrenamientoId, usuarioId)
                 .orElseThrow(() -> new NotFoundException("No se ha encontrado el entrenamiento o no pertenece al usuario"));
+    }
+
+    private TipoMedia obtenerTipoMedia(MultipartFile archivo){
+
+        String contentType = archivo.getContentType();
+
+        if (contentType == null)
+
+            throw new AccesoDenegadoException("No se pudo determinar el tipo de archivo");
+
+        if (contentType.startsWith("image/"))
+
+            return TipoMedia.IMAGEN;
+
+        if (contentType.startsWith("video/"))
+
+            return TipoMedia.VIDEO;
+
+        throw new AccesoDenegadoException("Tipo de archivo no permitido");
+    }
+
+    private List<MediaPublicacion> crearMedia(Publicacion publicacion,
+                                              List<MultipartFile> archivos){
+
+
+        List<MediaPublicacion> media = new ArrayList<>();
+
+        if (archivos != null){
+
+            for (MultipartFile archivo : archivos){ //vamos pasando por lo que nos trajo el controller
+
+
+                ImagenDTO archivoSubido = cloudinaryImagenServiceImp.subirImagen(archivo);
+
+
+                MediaPublicacion mediaPublicacion = new MediaPublicacion();
+
+                mediaPublicacion.setPublicId(archivoSubido.getPublicId());
+                mediaPublicacion.setUrl(archivoSubido.getUrl());
+                mediaPublicacion.setTipo(obtenerTipoMedia(archivo));
+
+                mediaPublicacion.setPublicacion(publicacion);
+
+
+                //la agregamos a la lista
+
+                media.add(mediaPublicacion);
+            }
+
+        }
+
+        return media;
+    }
+
+    //esto es para convertir a dto todo, ya que la entidad no tiene todos estos datos entonces no persisten
+    private PublicacionDTO convertirADTO(Publicacion publicacion, Long usuarioId) {
+        PublicacionDTO dto = publicacionMapper.toDTO(publicacion);
+
+        dto.setCantidadLikes(meGustaRepository.countByPublicacionId(publicacion.getId()));
+        dto.setCantidadComentarios(comentarioRepository.countByPublicacionId(publicacion.getId()));
+        dto.setDioLike(meGustaRepository.existsByUsuarioIdAndPublicacionId(usuarioId,
+                publicacion.getId()
+        ));
+
+        return dto;
     }
 
     private Page<PublicacionDTO> completarPublicaciones(Page<Publicacion> pagina,

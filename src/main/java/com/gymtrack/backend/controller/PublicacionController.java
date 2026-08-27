@@ -3,6 +3,7 @@ package com.gymtrack.backend.controller;
 import com.gymtrack.backend.dto.PublicacionDTO.ActualizarPublicacionDTO;
 import com.gymtrack.backend.dto.PublicacionDTO.CrearPublicacionDTO;
 import com.gymtrack.backend.dto.PublicacionDTO.PublicacionDTO;
+import com.gymtrack.backend.model.Publicacion;
 import com.gymtrack.backend.security.UsuarioDetails;
 import com.gymtrack.backend.service.ImagenService;
 import com.gymtrack.backend.service.PublicacionService;
@@ -70,12 +71,20 @@ public class PublicacionController {
 
     @PostMapping()
     public ResponseEntity<PublicacionDTO> crear(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
-                                                @RequestBody @Valid CrearPublicacionDTO dto){
+                                                @RequestPart("publicacion") @Valid CrearPublicacionDTO dto,
+                                                @RequestParam(value = "file", required = false) List<MultipartFile> archivos){
 
-        PublicacionDTO publicacion = publicacionService.crear(usuarioDetails.getId(), dto);
+        PublicacionDTO publicacion = publicacionService.crear(usuarioDetails.getId(), dto, archivos);
 
         return ResponseEntity.created(URI.create("/api/publicaciones/" + publicacion.getId())).body(publicacion);
+    }
 
+    @PostMapping("/{publicacionId}/media")
+    public ResponseEntity<PublicacionDTO> agregarMedia(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
+                                                       @PathVariable Long publicacionId,
+                                                       @RequestParam(value = "file") List<MultipartFile> archivos){
+
+        return ResponseEntity.ok(publicacionService.agregarMedia(usuarioDetails.getId(), publicacionId, archivos));
     }
 
     @PatchMapping("/{publicacionId}")
@@ -84,6 +93,15 @@ public class PublicacionController {
                                                       @RequestBody @Valid ActualizarPublicacionDTO dto){
 
         return ResponseEntity.ok(publicacionService.actualizar(usuarioDetails.getId(), publicacionId, dto));
+    }
+
+
+    @DeleteMapping("/{publicacionId}/media/{mediaId}")
+    public ResponseEntity<PublicacionDTO> eliminarMedia(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
+                                                        @PathVariable Long publicacionId,
+                                                        @PathVariable Long mediaId){
+
+        return ResponseEntity.ok(publicacionService.eliminarMedia(usuarioDetails.getId(), publicacionId, mediaId));
     }
 
     @DeleteMapping("/{publicacionId}")

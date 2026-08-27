@@ -14,6 +14,8 @@ import org.mapstruct.*;
 )
 public interface PublicacionMapper {
 
+
+    @Mapping(source = "archivos", target = "media")
     //le decimos a mapstruct que vaya a entrenamiento para obtener el usuario y lo guarde en la publi
     @Mapping(source = "entrenamiento.usuario", target = "usuario")
     PublicacionDTO toDTO(Publicacion publicacion);

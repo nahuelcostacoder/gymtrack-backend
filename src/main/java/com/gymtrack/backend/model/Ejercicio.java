@@ -27,6 +27,8 @@ public class Ejercicio extends EntidadAuditable {
 
     @Column(length = 500)
     private String videoUrl;
+    
+    private String videoPublicId;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "ejercicios_grupos_musculares",

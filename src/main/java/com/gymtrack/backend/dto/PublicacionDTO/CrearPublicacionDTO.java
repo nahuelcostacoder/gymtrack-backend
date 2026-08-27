@@ -17,9 +17,6 @@ public class CrearPublicacionDTO {
     @Size(max = 500)
     private String contenido;
 
-    @Size(max = 500)
-    @URL
-    private String imagenURL;
 
     @NotNull
     private Long entrenamientoId;
