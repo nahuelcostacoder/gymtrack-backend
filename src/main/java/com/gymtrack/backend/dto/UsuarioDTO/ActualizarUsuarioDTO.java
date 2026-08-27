@@ -21,9 +21,6 @@ public class ActualizarUsuarioDTO {
     @Size(max = 50)
     private String apellido;
 
-    @Size(max = 500)
-    private String fotoPerfilUrl;
-
     @Past
     private LocalDate fechaNacimiento;
 }
