@@ -108,6 +108,22 @@ public class PerfilServiceImp implements PerfilService{
         return perfilMapper.toDTO(perfil);
     }
 
+    @Override //aca es eliminar sin reemplazar
+    public PerfilDTO eliminarFotoPerfil(Long usuarioId){
+
+        Perfil perfil = buscarEntidadPorIdUsuario(usuarioId);
+
+        if (perfil.getFotoPerfilPublicId() != null){
+
+            cloudinaryImagenServiceImp.eliminarImagen(perfil.getFotoPerfilPublicId());
+        }
+
+        perfil.setFotoPerfilUrl(null);
+        perfil.setFotoPerfilPublicId(null);
+
+        return perfilMapper.toDTO(perfil);
+    }
+
     @Override
     public void eliminar(Long usuarioId, Long id) {
 

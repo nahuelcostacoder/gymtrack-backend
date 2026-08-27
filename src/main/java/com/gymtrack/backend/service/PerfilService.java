@@ -16,5 +16,6 @@ public interface PerfilService {
     PerfilDTO actualizar(Long usuarioId, Long id, ActualizarPerfilDTO dto);
     void eliminar(Long usuarioId, Long id);
     PerfilDTO actualizarFotoPerfil(Long usuarioId, MultipartFile archivo);
+    PerfilDTO eliminarFotoPerfil(Long usuarioId);
     PerfilDTO buscarPorIdUsuario(Long id);
 }

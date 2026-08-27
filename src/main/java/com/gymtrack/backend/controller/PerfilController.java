@@ -58,7 +58,7 @@ public class PerfilController {
         return ResponseEntity.ok(perfilService.actualizar(usuarioDetails.getId(), id, dto));
     }
 
-    @PatchMapping("/foto")
+    @PatchMapping("/me/foto")
     public ResponseEntity<PerfilDTO> actualizarFotoPerfil(
             @AuthenticationPrincipal UsuarioDetails usuarioDetails,
             @RequestParam("file") MultipartFile file) { //el archivo que le paso del front
@@ -68,6 +68,13 @@ public class PerfilController {
         );
     }
 
+
+    @DeleteMapping("/me/foto")
+    public ResponseEntity<PerfilDTO> eliminarFotoPerfil(@AuthenticationPrincipal UsuarioDetails usuarioDetails){
+
+
+        return ResponseEntity.ok(perfilService.eliminarFotoPerfil(usuarioDetails.getId()));
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
