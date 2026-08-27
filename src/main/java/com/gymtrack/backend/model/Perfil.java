@@ -34,6 +34,11 @@ public class Perfil extends EntidadAuditable{
     @Column(nullable = false)
     private NivelEntrenamiento nivelEntrenamiento;   //vendria a ser si es bajo, moderado o alto
 
+    @Column(length = 500)
+    private String fotoPerfilUrl;
+
+    private String fotoPerfilPublicId;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false, unique = true) //aca le digo a JPA, quiero en perfiles una columna llamada usuario_id que sea una foranea de usuarios
     private Usuario usuario;

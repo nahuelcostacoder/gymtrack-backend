@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-08-25T17:31:15-0300",
+    date = "2026-08-26T20:57:26-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.12.1 (Microsoft)"
 )
 @Component
@@ -68,7 +68,6 @@ public class ComentarioMapperImpl implements ComentarioMapper {
         usuarioResumenDTO.id( usuario.getId() );
         usuarioResumenDTO.username( usuario.getUsername() );
         usuarioResumenDTO.nombre( usuario.getNombre() );
-        usuarioResumenDTO.fotoPerfilUrl( usuario.getFotoPerfilUrl() );
 
         return usuarioResumenDTO.build();
     }

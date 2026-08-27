@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
 import java.util.List;
@@ -55,6 +56,16 @@ public class PerfilController {
                                                 @RequestBody @Valid ActualizarPerfilDTO dto){
 
         return ResponseEntity.ok(perfilService.actualizar(usuarioDetails.getId(), id, dto));
+    }
+
+    @PatchMapping("/foto")
+    public ResponseEntity<PerfilDTO> actualizarFotoPerfil(
+            @AuthenticationPrincipal UsuarioDetails usuarioDetails,
+            @RequestParam("file") MultipartFile file) { //el archivo que le paso del front
+
+        return ResponseEntity.ok(
+                perfilService.actualizarFotoPerfil(usuarioDetails.getId(), file)
+        );
     }
 
 

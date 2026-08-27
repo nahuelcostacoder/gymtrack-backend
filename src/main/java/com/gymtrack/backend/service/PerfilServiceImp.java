@@ -1,5 +1,6 @@
 package com.gymtrack.backend.service;
 
+import com.gymtrack.backend.dto.ImagenDTO.ImagenDTO;
 import com.gymtrack.backend.dto.PerfilDTO.ActualizarPerfilDTO;
 import com.gymtrack.backend.dto.PerfilDTO.CrearPerfilDTO;
 import com.gymtrack.backend.dto.PerfilDTO.PerfilDTO;
@@ -13,6 +14,7 @@ import com.gymtrack.backend.repository.PerfilRepository;
 import com.gymtrack.backend.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class PerfilServiceImp implements PerfilService{
     private final PerfilRepository perfilRepository;
     private final UsuarioRepository usuarioRepository;
     private final PerfilMapper perfilMapper;
+    private final CloudinaryImagenServiceImp cloudinaryImagenServiceImp;
 
     @Override
     public List<PerfilDTO> listar() {
@@ -82,6 +85,30 @@ public class PerfilServiceImp implements PerfilService{
     }
 
     @Override
+    public PerfilDTO actualizarFotoPerfil(Long usuarioId, MultipartFile archivo){
+
+        Perfil perfil = buscarEntidadPorIdUsuario(usuarioId);
+
+        String publicIdAnterior = perfil.getFotoPerfilPublicId();
+
+        //subimos la nueva imagen
+        ImagenDTO imagen = cloudinaryImagenServiceImp.subirImagen(archivo);
+
+        //guardamos url
+        perfil.setFotoPerfilUrl(imagen.getUrl());
+        perfil.setFotoPerfilPublicId(imagen.getPublicId());
+
+        perfilRepository.save(perfil);
+
+        //so tpdp salio bien, para eliminar la imagen vieja de cloudinary si ya habia una antes
+        if (publicIdAnterior != null) {
+            cloudinaryImagenServiceImp.eliminarImagen(publicIdAnterior);
+        }
+
+        return perfilMapper.toDTO(perfil);
+    }
+
+    @Override
     public void eliminar(Long usuarioId, Long id) {
 
         Perfil perfil = buscarEntidadPorId(id);
@@ -94,6 +121,7 @@ public class PerfilServiceImp implements PerfilService{
         perfilRepository.delete(perfil);
     }
 
+
     @Override
     public PerfilDTO buscarPorIdUsuario(Long id) {
 
@@ -103,6 +131,13 @@ public class PerfilServiceImp implements PerfilService{
         return perfilMapper.toDTO(perfil);
     }
 
+
+    private Perfil buscarEntidadPorIdUsuario(Long usuarioId){
+
+        return perfilRepository.findByUsuarioId(usuarioId)
+                .orElseThrow(() -> new NotFoundException("No se ha encontrado un perfil para el usuario con ID " + usuarioId));
+
+    }
 
     private Perfil buscarEntidadPorId(Long id){
 

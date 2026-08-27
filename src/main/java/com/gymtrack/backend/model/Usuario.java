@@ -39,9 +39,6 @@ public class Usuario extends EntidadAuditable{
     @Column(nullable = false, length = 50)
     private String apellido;
 
-    @Column(length = 500)
-    private String fotoPerfilUrl;
-
     @Column(nullable = false)
     private LocalDate fechaNacimiento;
 

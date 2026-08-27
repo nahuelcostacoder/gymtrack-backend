@@ -4,6 +4,7 @@ import com.gymtrack.backend.dto.PublicacionDTO.ActualizarPublicacionDTO;
 import com.gymtrack.backend.dto.PublicacionDTO.CrearPublicacionDTO;
 import com.gymtrack.backend.dto.PublicacionDTO.PublicacionDTO;
 import com.gymtrack.backend.security.UsuarioDetails;
+import com.gymtrack.backend.service.ImagenService;
 import com.gymtrack.backend.service.PublicacionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.*;
 import java.net.URI;
 import java.util.List;
 
@@ -26,6 +29,7 @@ import java.util.List;
 public class PublicacionController {
 
     private final PublicacionService publicacionService;
+    private final ImagenService imagenService;
 
 
     //una pagina tiene 10 publicaciones
@@ -90,6 +94,5 @@ public class PublicacionController {
 
         return ResponseEntity.noContent().build();
     }
-
 
 }

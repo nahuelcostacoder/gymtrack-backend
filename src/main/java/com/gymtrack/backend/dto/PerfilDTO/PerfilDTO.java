@@ -2,6 +2,7 @@ package com.gymtrack.backend.dto.PerfilDTO;
 
 import com.gymtrack.backend.model.NivelEntrenamiento;
 import com.gymtrack.backend.model.Objetivo;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -22,6 +23,8 @@ public class PerfilDTO {
     private Objetivo objetivo;
 
     private NivelEntrenamiento nivelEntrenamiento;
+
+    private String fotoPerfilUrl;
 
     private Long usuarioId;
 

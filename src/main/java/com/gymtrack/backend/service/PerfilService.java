@@ -4,6 +4,7 @@ package com.gymtrack.backend.service;
 import com.gymtrack.backend.dto.PerfilDTO.ActualizarPerfilDTO;
 import com.gymtrack.backend.dto.PerfilDTO.CrearPerfilDTO;
 import com.gymtrack.backend.dto.PerfilDTO.PerfilDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -14,5 +15,6 @@ public interface PerfilService {
     PerfilDTO crear(Long usuarioId, CrearPerfilDTO dto);
     PerfilDTO actualizar(Long usuarioId, Long id, ActualizarPerfilDTO dto);
     void eliminar(Long usuarioId, Long id);
+    PerfilDTO actualizarFotoPerfil(Long usuarioId, MultipartFile archivo);
     PerfilDTO buscarPorIdUsuario(Long id);
 }

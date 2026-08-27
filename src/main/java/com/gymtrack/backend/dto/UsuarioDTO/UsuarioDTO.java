@@ -15,27 +15,16 @@ public class UsuarioDTO {
 
     private Long id;
 
-    @NotBlank //tampoco permite espacios
-    @Size(min = 3, max = 30)
     private String username;
 
-    @NotBlank
-    @Email
-    @Size(max = 100)
+
     private String email;
 
-    @NotBlank
-    @Size(max = 50)
+
     private String nombre;
-    @NotBlank
-    @Size(max = 50)
+
     private String apellido;
 
-    @Size(max = 500)
-    private String fotoPerfilUrl;
-
-    @Past
-    @NotNull
     private LocalDate fechaNacimiento;
 
     private boolean habilitado;
