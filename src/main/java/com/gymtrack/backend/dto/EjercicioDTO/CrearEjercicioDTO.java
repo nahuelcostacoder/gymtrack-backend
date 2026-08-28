@@ -23,11 +23,6 @@ public class CrearEjercicioDTO {
     @Size(max = 500)
     private String descripcion;
 
-    @NotBlank
-    @Size(max = 500)
-    @URL
-    private String videoUrl;
-
     @NotEmpty
     private Set<Long> gruposMuscularesIds;
 }

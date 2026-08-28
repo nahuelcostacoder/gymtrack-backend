@@ -1,6 +1,6 @@
 package com.gymtrack.backend.service;
 
-import com.gymtrack.backend.dto.ImagenDTO.ImagenDTO;
+import com.gymtrack.backend.dto.ArchivoDTO.ArchivoDTO;
 import com.gymtrack.backend.dto.PerfilDTO.ActualizarPerfilDTO;
 import com.gymtrack.backend.dto.PerfilDTO.CrearPerfilDTO;
 import com.gymtrack.backend.dto.PerfilDTO.PerfilDTO;
@@ -9,6 +9,7 @@ import com.gymtrack.backend.exception.EstadoInvalidoException;
 import com.gymtrack.backend.exception.NotFoundException;
 import com.gymtrack.backend.mapper.PerfilMapper;
 import com.gymtrack.backend.model.Perfil;
+import com.gymtrack.backend.model.TipoMedia;
 import com.gymtrack.backend.model.Usuario;
 import com.gymtrack.backend.repository.PerfilRepository;
 import com.gymtrack.backend.repository.UsuarioRepository;
@@ -44,7 +45,7 @@ public class PerfilServiceImp implements PerfilService{
     }
 
     @Override
-    public PerfilDTO crear(Long usuarioId, CrearPerfilDTO dto) {
+    public PerfilDTO crear(Long usuarioId, CrearPerfilDTO dto, MultipartFile archivo) {
 
         Usuario usuario = usuarioRepository.findById(usuarioId)
                 .orElseThrow(() -> new NotFoundException("No se ha encontrado un usuario con el ID " + usuarioId));
@@ -60,6 +61,8 @@ public class PerfilServiceImp implements PerfilService{
         Perfil perfil = perfilMapper.toEntity(dto);
 
         perfil.setUsuario(usuario);
+
+        cargarImagen(perfil, archivo);
 
         Perfil perfilGuardado = perfilRepository.save(perfil);
 
@@ -92,17 +95,13 @@ public class PerfilServiceImp implements PerfilService{
         String publicIdAnterior = perfil.getFotoPerfilPublicId();
 
         //subimos la nueva imagen
-        ImagenDTO imagen = cloudinaryImagenServiceImp.subirImagen(archivo);
-
-        //guardamos url
-        perfil.setFotoPerfilUrl(imagen.getUrl());
-        perfil.setFotoPerfilPublicId(imagen.getPublicId());
+        cargarImagen(perfil, archivo);
 
         perfilRepository.save(perfil);
 
         //so tpdp salio bien, para eliminar la imagen vieja de cloudinary si ya habia una antes
         if (publicIdAnterior != null) {
-            cloudinaryImagenServiceImp.eliminarImagen(publicIdAnterior);
+            cloudinaryImagenServiceImp.eliminarArchivo(publicIdAnterior, TipoMedia.IMAGEN);
         }
 
         return perfilMapper.toDTO(perfil);
@@ -115,26 +114,13 @@ public class PerfilServiceImp implements PerfilService{
 
         if (perfil.getFotoPerfilPublicId() != null){
 
-            cloudinaryImagenServiceImp.eliminarImagen(perfil.getFotoPerfilPublicId());
+            cloudinaryImagenServiceImp.eliminarArchivo(perfil.getFotoPerfilPublicId(), TipoMedia.IMAGEN);
         }
 
         perfil.setFotoPerfilUrl(null);
         perfil.setFotoPerfilPublicId(null);
 
         return perfilMapper.toDTO(perfil);
-    }
-
-    @Override
-    public void eliminar(Long usuarioId, Long id) {
-
-        Perfil perfil = buscarEntidadPorId(id);
-
-        if (!perfil.getUsuario().getId().equals(usuarioId)){
-
-            throw new AccesoDenegadoException("No podes eliminar un perfil que no es tuyo");
-        }
-
-        perfilRepository.delete(perfil);
     }
 
 
@@ -147,6 +133,27 @@ public class PerfilServiceImp implements PerfilService{
         return perfilMapper.toDTO(perfil);
     }
 
+    private void cargarImagen(Perfil perfil, MultipartFile archivo){
+
+        //subimos la nueva imagen
+
+        if (archivo == null || archivo.isEmpty()) {
+            return;
+        }
+
+        String contentType = archivo.getContentType();
+
+        if (contentType == null || !contentType.startsWith("image/")) {
+            throw new IllegalArgumentException("El archivo debe ser una imagen");
+        }
+
+        ArchivoDTO imagen = cloudinaryImagenServiceImp.subirArchivo(archivo);
+
+        //guardamos url
+        perfil.setFotoPerfilUrl(imagen.getUrl());
+        perfil.setFotoPerfilPublicId(imagen.getPublicId());
+
+    }
 
     private Perfil buscarEntidadPorIdUsuario(Long usuarioId){
 

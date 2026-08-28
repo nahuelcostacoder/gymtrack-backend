@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
 import java.util.List;
@@ -44,9 +45,10 @@ public class EjercicioController {
 
     @PreAuthorize("hasAuthority('EJERCICIO_GESTIONAR')")
     @PostMapping
-    public ResponseEntity<EjercicioDTO> crear(@RequestBody @Valid CrearEjercicioDTO dto){
+    public ResponseEntity<EjercicioDTO> crear(@RequestPart("dto") @Valid CrearEjercicioDTO dto,
+                                              @RequestParam(value = "file", required = false) MultipartFile file){
 
-        EjercicioDTO ejercicio = ejercicioService.crear(dto);
+        EjercicioDTO ejercicio = ejercicioService.crear(dto, file);
 
         return ResponseEntity.created(URI.create("/api/ejercicios/" + ejercicio.getId())).body(ejercicio);
     }
@@ -56,6 +58,20 @@ public class EjercicioController {
     public ResponseEntity<EjercicioDTO> actualizar(@PathVariable Long id, @RequestBody @Valid ActualizarEjercicioDTO dto){
 
         return ResponseEntity.ok(ejercicioService.actualizar(id, dto));
+    }
+
+    @PatchMapping("/{id}/video")
+    public ResponseEntity<EjercicioDTO> actualizarVideo(@PathVariable Long id,
+                                                        @RequestParam("file") MultipartFile file){
+
+
+        return ResponseEntity.ok(ejercicioService.actualizarVideo(id, file));
+    }
+
+    @DeleteMapping("/{id}/video")
+    public ResponseEntity<EjercicioDTO> eliminarVideo(@PathVariable Long id){
+
+        return ResponseEntity.ok(ejercicioService.eliminarVideo(id));
     }
 
     @PreAuthorize("hasAuthority('EJERCICIO_GESTIONAR')")

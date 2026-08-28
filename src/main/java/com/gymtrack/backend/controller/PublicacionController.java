@@ -5,7 +5,7 @@ import com.gymtrack.backend.dto.PublicacionDTO.CrearPublicacionDTO;
 import com.gymtrack.backend.dto.PublicacionDTO.PublicacionDTO;
 import com.gymtrack.backend.model.Publicacion;
 import com.gymtrack.backend.security.UsuarioDetails;
-import com.gymtrack.backend.service.ImagenService;
+import com.gymtrack.backend.service.ArchivoService;
 import com.gymtrack.backend.service.PublicacionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,6 @@ import java.util.List;
 public class PublicacionController {
 
     private final PublicacionService publicacionService;
-    private final ImagenService imagenService;
 
 
     //una pagina tiene 10 publicaciones
@@ -71,7 +70,7 @@ public class PublicacionController {
 
     @PostMapping()
     public ResponseEntity<PublicacionDTO> crear(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
-                                                @RequestPart("publicacion") @Valid CrearPublicacionDTO dto,
+                                                @RequestPart("dto") @Valid CrearPublicacionDTO dto,
                                                 @RequestParam(value = "file", required = false) List<MultipartFile> archivos){
 
         PublicacionDTO publicacion = publicacionService.crear(usuarioDetails.getId(), dto, archivos);

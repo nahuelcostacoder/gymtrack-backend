@@ -1,6 +1,6 @@
 package com.gymtrack.backend.service;
 
-import com.gymtrack.backend.dto.ImagenDTO.ImagenDTO;
+import com.gymtrack.backend.dto.ArchivoDTO.ArchivoDTO;
 import com.gymtrack.backend.dto.PublicacionDTO.ActualizarPublicacionDTO;
 import com.gymtrack.backend.dto.PublicacionDTO.CrearPublicacionDTO;
 import com.gymtrack.backend.dto.PublicacionDTO.PublicacionDTO;
@@ -163,9 +163,11 @@ public class PublicacionServiceImp implements PublicacionService{
             throw new AccesoDenegadoException("Esa media no pertenece a ese usuario");
         }
 
+
+
         if (mediaPublicacion.getPublicId() != null){
 
-            cloudinaryImagenServiceImp.eliminarImagen(mediaPublicacion.getPublicId());
+            cloudinaryImagenServiceImp.eliminarArchivo(mediaPublicacion.getPublicId(), mediaPublicacion.getTipo());
         }
 
         publicacion.getArchivos().remove(mediaPublicacion); //por orphan remove, se va a eliminar solo mediaPublicacion como objeto
@@ -199,7 +201,7 @@ public class PublicacionServiceImp implements PublicacionService{
 
             if (media.getPublicId() != null){
 
-                cloudinaryImagenServiceImp.eliminarImagen(media.getPublicId());
+                cloudinaryImagenServiceImp.eliminarArchivo(media.getPublicId(), media.getTipo());
             }
         }
 
@@ -253,7 +255,7 @@ public class PublicacionServiceImp implements PublicacionService{
             for (MultipartFile archivo : archivos){ //vamos pasando por lo que nos trajo el controller
 
 
-                ImagenDTO archivoSubido = cloudinaryImagenServiceImp.subirImagen(archivo);
+                ArchivoDTO archivoSubido = cloudinaryImagenServiceImp.subirArchivo(archivo);
 
 
                 MediaPublicacion mediaPublicacion = new MediaPublicacion();

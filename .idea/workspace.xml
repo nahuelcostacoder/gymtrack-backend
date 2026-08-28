@@ -5,19 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03fc6b9a-0fc6-405f-9693-f50a24c7e21d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/dto/MediaPublicacionDTO/MediaPublicacionDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/model/MediaPublicacion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/model/TipoMedia.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/repository/MediaPublicacionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/ArchivoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/EjercicioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/EjercicioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/PerfilController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/PerfilController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/PublicacionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/PublicacionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/dto/PublicacionDTO/CrearPublicacionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/dto/PublicacionDTO/CrearPublicacionDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/dto/PublicacionDTO/PublicacionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/dto/PublicacionDTO/PublicacionDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/mapper/PublicacionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/mapper/PublicacionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/dto/EjercicioDTO/CrearEjercicioDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/dto/EjercicioDTO/CrearEjercicioDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/dto/ImagenDTO/ImagenDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/dto/ArchivoDTO/ArchivoDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/model/Ejercicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/model/Ejercicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/model/Publicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/model/Publicacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/PublicacionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/PublicacionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/CloudinaryImagenServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/CloudinaryImagenServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/EjercicioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/EjercicioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/EjercicioServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/EjercicioServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/ImagenService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/PerfilService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/PerfilService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/PerfilServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/PerfilServiceImp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/PublicacionServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gymtrack/backend/service/PublicacionServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/controller/EjercicioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/controller/EjercicioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/controller/PerfilController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/controller/PerfilController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/controller/PublicacionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/controller/PublicacionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/dto/EjercicioDTO/CrearEjercicioDTO$CrearEjercicioDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/dto/EjercicioDTO/CrearEjercicioDTO$CrearEjercicioDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/dto/EjercicioDTO/CrearEjercicioDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/dto/EjercicioDTO/CrearEjercicioDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/dto/ImagenDTO/ImagenDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/mapper/EjercicioMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/mapper/EjercicioMapperImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/model/Ejercicio$EjercicioBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/model/Ejercicio$EjercicioBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/model/Ejercicio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/model/Ejercicio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/CloudinaryImagenServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/CloudinaryImagenServiceImp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/EjercicioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/EjercicioService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/EjercicioServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/EjercicioServiceImp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/ImagenService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/PerfilService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/PerfilService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/PerfilServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/PerfilServiceImp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/PublicacionServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gymtrack/backend/service/PublicacionServiceImp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/AmistadMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/AmistadMapperImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/ComentarioMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/ComentarioMapperImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/EjercicioMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/gymtrack/backend/mapper/EjercicioMapperImpl.java" afterDir="false" />
@@ -44,9 +62,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
         <option value="Interface" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -81,26 +99,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.GymtrackBackendApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Spring Boot.GymtrackBackendApplication.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/gymtrack-backend&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.10695189&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.1199041&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.GymtrackBackendApplication.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.GymtrackBackendApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Admin/gymtrack-backend",
+    "node.js.detected.package.jshint": "true",
+    "node.js.selected.package.jshint": "",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.10695189",
+    "project.structure.side.proportion": "0.1199041",
+    "settings.editor.selected.configurable": "editor.preferences.completion.popup"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="GymtrackBackendApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <envs>
@@ -157,7 +177,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="NONE" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/gymtrack/backend/controller/PublicacionController.java</url>
-          <line>47</line>
+          <line>46</line>
           <placement>INTER_LINE</placement>
           <option name="timeStamp" value="1" />
         </line-breakpoint>

@@ -44,9 +44,10 @@ public class PerfilController {
 
     @PostMapping
     public ResponseEntity<PerfilDTO> crear(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
-                                           @RequestBody @Valid CrearPerfilDTO dto){
+                                           @RequestPart("dto") @Valid CrearPerfilDTO dto,
+                                           @RequestParam(value = "file", required = false) MultipartFile archivo){
 
-        PerfilDTO perfil = perfilService.crear(usuarioDetails.getId(), dto);
+        PerfilDTO perfil = perfilService.crear(usuarioDetails.getId(), dto, archivo);
 
         return ResponseEntity.created(URI.create("/api/perfiles/" + perfil.getId())).body(perfil);
     }
@@ -75,14 +76,6 @@ public class PerfilController {
 
         return ResponseEntity.ok(perfilService.eliminarFotoPerfil(usuarioDetails.getId()));
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@AuthenticationPrincipal UsuarioDetails usuarioDetails,
-                                         @PathVariable Long id){
-
-        perfilService.eliminar(usuarioDetails.getId(), id);
-
-        return ResponseEntity.noContent().build();
-    }
+    
 
 }

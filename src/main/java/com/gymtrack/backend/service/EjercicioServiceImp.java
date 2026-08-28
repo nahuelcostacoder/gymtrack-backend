@@ -3,16 +3,20 @@ package com.gymtrack.backend.service;
 import com.gymtrack.backend.dto.EjercicioDTO.ActualizarEjercicioDTO;
 import com.gymtrack.backend.dto.EjercicioDTO.CrearEjercicioDTO;
 import com.gymtrack.backend.dto.EjercicioDTO.EjercicioDTO;
+import com.gymtrack.backend.dto.ArchivoDTO.ArchivoDTO;
+import com.gymtrack.backend.exception.AccesoDenegadoException;
 import com.gymtrack.backend.exception.AlreadyExistsException;
 import com.gymtrack.backend.exception.NotFoundException;
 import com.gymtrack.backend.exception.ResourceNotFoundException;
 import com.gymtrack.backend.mapper.EjercicioMapper;
 import com.gymtrack.backend.model.Ejercicio;
 import com.gymtrack.backend.model.GrupoMuscular;
+import com.gymtrack.backend.model.TipoMedia;
 import com.gymtrack.backend.repository.EjercicioRepository;
 import com.gymtrack.backend.repository.GrupoMuscularRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashSet;
 import java.util.List;
@@ -25,6 +29,7 @@ public class EjercicioServiceImp implements EjercicioService{
     private final EjercicioRepository ejercicioRepository;
     private final GrupoMuscularRepository grupoMuscularRepository;
     private final EjercicioMapper ejercicioMapper;
+    private final CloudinaryImagenServiceImp cloudinaryImagenServiceImp;
 
     @Override
     public List<EjercicioDTO> listar() {
@@ -42,7 +47,7 @@ public class EjercicioServiceImp implements EjercicioService{
     }
 
     @Override
-    public EjercicioDTO crear(CrearEjercicioDTO dto) {
+    public EjercicioDTO crear(CrearEjercicioDTO dto, MultipartFile archivo) {
 
         validarNombreEjercicio(dto.getNombre());
 
@@ -66,6 +71,8 @@ public class EjercicioServiceImp implements EjercicioService{
         //agrego al ejercicio
 
         ejercicio.setGruposMusculares(gruposMusculares);
+
+        crearVideo(ejercicio, archivo);
 
         return ejercicioMapper.toDto(ejercicioRepository.save(ejercicio));
 
@@ -91,6 +98,42 @@ public class EjercicioServiceImp implements EjercicioService{
 
         return ejercicioMapper.toDto(ejercicioRepository.save(ejercicio));
     }
+
+    @Override
+    public EjercicioDTO actualizarVideo(Long id, MultipartFile archivo){
+
+        Ejercicio ejercicio = buscarEntidadPorId(id);
+
+        String publicIdAnterior = ejercicio.getVideoPublicId();
+
+        crearVideo(ejercicio, archivo);
+
+        Ejercicio guardado = ejercicioRepository.save(ejercicio);
+
+        if (publicIdAnterior != null)
+            cloudinaryImagenServiceImp.eliminarArchivo(publicIdAnterior, TipoMedia.VIDEO);
+
+
+        return ejercicioMapper.toDto(guardado);
+
+    }
+
+    public EjercicioDTO eliminarVideo(Long id){
+
+
+        Ejercicio ejercicio = buscarEntidadPorId(id);
+
+        if (ejercicio.getVideoPublicId() != null){
+
+            cloudinaryImagenServiceImp.eliminarArchivo(ejercicio.getVideoPublicId(), TipoMedia.VIDEO);
+        }
+
+        ejercicio.setVideoUrl(null);
+        ejercicio.setVideoPublicId(null);
+
+        return ejercicioMapper.toDto(ejercicioRepository.save(ejercicio));
+    }
+
 
     @Override
     public void eliminar(Long id) {
@@ -120,6 +163,26 @@ public class EjercicioServiceImp implements EjercicioService{
         if (ejercicioRepository.existsByNombre(nombre))
 
             throw new AlreadyExistsException("Ya existe un ejercicio con nombre " + nombre);
+    }
+
+
+    private void crearVideo(Ejercicio ejercicio, MultipartFile archivo){
+
+        if (archivo != null && !archivo.isEmpty()){
+
+            String contentType = archivo.getContentType();
+
+            if (contentType == null || archivo.isEmpty())
+
+                throw new AccesoDenegadoException("El archivo debe ser un  video");
+
+
+            ArchivoDTO archivoSubido = cloudinaryImagenServiceImp.subirArchivo(archivo);
+
+            ejercicio.setVideoUrl(archivoSubido.getUrl());
+            ejercicio.setVideoPublicId(archivoSubido.getPublicId());
+        }
+
     }
 
      
